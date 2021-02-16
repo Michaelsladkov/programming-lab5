@@ -1,3 +1,5 @@
+package main.java.data;
+
 public enum Status {
     FIRED,
     HIRED,
