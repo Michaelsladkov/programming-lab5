@@ -5,6 +5,6 @@ public class NullFieldException extends Exception{
         super("This field can't be null");
     }
     public NullFieldException(String fieldName){
-        super(fieldName+" value is incorrect");
+        super(fieldName+" can't be null");
     }
 }
