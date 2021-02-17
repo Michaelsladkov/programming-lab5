@@ -5,10 +5,10 @@ import main.java.data.Worker;
 import java.util.TreeSet;
 
 public class StorrageManager {
-    private TreeSet<Worker> storrage = new TreeSet<>();
+    private final TreeSet<Worker> storage = new TreeSet<>();
     public Worker getMax(){
-        Worker max = storrage.first();
-        for(Worker w : storrage){
+        Worker max = storage.first();
+        for(Worker w : storage){
             if(max.compareTo(w)>0){
                 max=w;
             }
@@ -16,10 +16,10 @@ public class StorrageManager {
         return max;
     }
     public boolean add(Worker w){
-        return storrage.add(w);
+        return storage.add(w);
     }
     public Worker searchById(int id){
-        for(Worker w : storrage){
+        for(Worker w : storage){
            if(w.getId()==id){
                return w;
            }
@@ -27,9 +27,9 @@ public class StorrageManager {
         return null;
     }
     public boolean remove(Worker w){
-        return storrage.remove(w);
+        return storage.remove(w);
     }
     public void clear(){
-        storrage.clear();
+        storage.clear();
     }
 }
