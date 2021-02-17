@@ -2,8 +2,8 @@ package main.java.data;
 
 public enum Status {
     FIRED,
+    PROBATION,
     HIRED,
-    RECOMMENDED_FOR_PROMOTION,
     REGULAR,
-    PROBATION;
+    RECOMMENDED_FOR_PROMOTION;
 }

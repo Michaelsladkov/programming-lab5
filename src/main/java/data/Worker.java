@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
-public class Worker {
+public class Worker implements Comparable<Worker> {
     private int id;
     private String name;
     private Coordinates coordinates;
@@ -22,7 +22,8 @@ public class Worker {
                   ZonedDateTime startDate,
                   LocalDate endDate,
                   Status status,
-                  Person person){
+                  Person person,
+                  int id){
         this.name=name;
         this.coordinates=coordinates;
         this.creationDate=creationDate;
@@ -31,5 +32,20 @@ public class Worker {
         this.endDate=endDate;
         this.status=status;
         this.person=person;
+        this.id=id;
+    }
+
+    public long getValue(){
+        return creationDate.getTime()+salary+status.ordinal();
+    }
+
+    @Override
+    public int compareTo (Worker w) {
+        if(this.getValue()>w.getValue()){return -1;}
+        if (this.getValue()<w.getValue()){return 1;}
+        return 0;
+    }
+    public int getId(){
+        return id;
     }
 }

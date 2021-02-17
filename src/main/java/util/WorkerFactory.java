@@ -7,13 +7,15 @@ import java.time.ZonedDateTime;
 import java.util.Date;
 
 public class WorkerFactory {
-    private int startId;
+    private int id;
     public WorkerFactory(int startId){
-        this.startId=startId;
+        this.id=startId;
     }
     public Worker createWorker(String name, Coordinates coordinates,
                                long salary, ZonedDateTime startDate,
-                               LocalDate endDate, Status status) throws NullFieldException, IncorrectValueException {
+                               LocalDate endDate, Status status,
+                               Double height, Color eyeColor,
+                               Color hairColor, Country nationality) throws NullFieldException, IncorrectValueException {
         if(name==null||name==""){
             throw new NullFieldException("Name");
         }
@@ -32,6 +34,16 @@ public class WorkerFactory {
         if (status==null){
             throw new NullFieldException("Status");
         }
-        return new Worker(name, coordinates, new Date(), salary,startDate,endDate,status,);
+        if(height==null){
+            throw new NullFieldException("Height");
+        }
+        if(nationality==null){
+            throw new NullFieldException("Nationality");
+        }
+        if(height<=0){
+            throw new IncorrectValueException("Height", "Should be more than 0");
+        }
+        Person person=new Person(height, nationality, eyeColor, hairColor);
+        return new Worker(name, coordinates, new Date(), salary, startDate, endDate, status, person, id++);
     }
 }
