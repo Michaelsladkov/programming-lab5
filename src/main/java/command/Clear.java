@@ -1,11 +1,11 @@
 package main.java.command;
 
-import main.java.storrage.StorrageManager;
+import main.java.storrage.StorageManager;
 
 public class Clear implements Command{
-    private final StorrageManager storage;
+    private final StorageManager storage;
 
-    public Clear(StorrageManager storage){
+    public Clear(StorageManager storage){
         this.storage=storage;
     }
     @Override

@@ -2,10 +2,20 @@ package main.java.storrage;
 
 import main.java.data.Worker;
 
+import java.util.Collection;
 import java.util.TreeSet;
 
-public class StorrageManager {
-    private final TreeSet<Worker> storage = new TreeSet<>();
+public class StorageManager {
+    private TreeSet<Worker> storage;
+    public StorageManager(){
+        storage=new TreeSet<>();
+    }
+    public StorageManager(TreeSet<Worker> externalStorage){
+        storage=externalStorage;
+    }
+    public StorageManager(Collection external){
+        storage=new TreeSet<>(external);
+    }
     public Worker getMax(){
         Worker max = storage.first();
         for(Worker w : storage){

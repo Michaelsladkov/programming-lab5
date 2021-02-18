@@ -48,4 +48,20 @@ public class Worker implements Comparable<Worker> {
     public int getId(){
         return id;
     }
+    public String getName(){
+        return name;
+    }
+    public Coordinates getCoordinates(){
+        return coordinates;
+    }
+    public Date getCreationDate(){
+        return creationDate;
+    }
+    public long getSalary(){return salary;}
+    public ZonedDateTime getStartDate(){
+        return startDate;
+    }
+    public LocalDate getEndDate(){ return endDate;}
+    public Status getStatus(){return status;}
+    public Person getPerson(){return person;}
 }
