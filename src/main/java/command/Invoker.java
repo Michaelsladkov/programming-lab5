@@ -14,6 +14,7 @@ public class Invoker {
     public void initHashMap(){
         manager=new StorageManager();
         commandHashMap.put("clear", new Clear(manager));
+        commandHashMap.put("ping", new Ping());
     }
     public void execute(String name, String args) throws NullPointerException{
         commandHashMap.get(name).execute(args);
