@@ -7,12 +7,12 @@ import java.util.HashMap;
 public class Invoker {
     private HashMap<String, Command> commandHashMap;
     private StorageManager manager;
-    public Invoker(){
+    public Invoker(StorageManager m){
         commandHashMap=new HashMap<>();
+        manager=m;
         initHashMap();
     }
     public void initHashMap(){
-        manager=new StorageManager();
         commandHashMap.put("clear", new Clear(manager));
         commandHashMap.put("ping", new Ping());
     }
