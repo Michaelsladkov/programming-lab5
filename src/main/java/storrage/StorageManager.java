@@ -28,7 +28,7 @@ public class StorageManager {
     public boolean add(Worker w){
         return storage.add(w);
     }
-    public Worker searchById(int id){
+    public Worker getById(int id){
         for(Worker w : storage){
            if(w.getId()==id){
                return w;
