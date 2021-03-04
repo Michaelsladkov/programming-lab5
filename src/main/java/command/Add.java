@@ -16,13 +16,13 @@ public class Add implements Command{
     @Override
     public void execute(String args){
         try {
-            manager.add(factory.readWorker());
+            manager.add(factory.readWorkerFromConsole());
         }
         catch (IncorrectValueException e){
             System.out.println(e.getMessage());
         }
         catch (NullFieldException e){
-            System.out.print(e.getMessage());
+            System.out.println(e.getMessage());
         }
     }
 }

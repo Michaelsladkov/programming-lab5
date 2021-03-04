@@ -56,7 +56,7 @@ public class WorkerFactory {
         return new Worker(name, coordinates, new Date(), salary, startDate, endDate, status, person, id++);
     }
 
-    public Worker readWorker() throws NullFieldException, IncorrectValueException{
+    public Worker readWorkerFromConsole() throws NullFieldException, IncorrectValueException{
         String name=null;
         Long x=null;
         Long y=null;
@@ -68,6 +68,7 @@ public class WorkerFactory {
         Color eyeColor;
         Color hairColor;
         Country nationality=null;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a z");
 
         while (name==null){
             System.out.print("Enter worker's name: ");
@@ -120,8 +121,10 @@ public class WorkerFactory {
 
         while (startDate==null){
             System.out.print("Enter start date: ");
+            String preDate;
+            while((preDate=scanner.nextLine()).isEmpty()){}
             try {
-                startDate = ZonedDateTime.parse(scanner.next());
+                startDate = ZonedDateTime.parse(preDate, formatter);
             }
             catch (InputMismatchException e){
                 System.out.print("your input doesn't contain date, try again");
@@ -129,7 +132,7 @@ public class WorkerFactory {
             }
             catch (DateTimeParseException e)
             {
-                System.out.println("Your format is incorrect. Use default ISO");
+                System.out.println("Your format is incorrect. Use yyyy-mm-dd hh:mm:ss AM/PM +/-hh:mm");
             }
         }
 
@@ -185,10 +188,10 @@ public class WorkerFactory {
             for (Color s : Color.values()) {
                 System.out.println(s.toString());
             }
-            String preStatus;
-            while((preStatus=scanner.nextLine()).isEmpty()){}
+            String preColor;
+            while((preColor=scanner.nextLine()).isEmpty()){}
             try {
-                eyeColor = Color.valueOf(preStatus.toUpperCase());
+                eyeColor = Color.valueOf(preColor.toUpperCase());
             } catch (IllegalArgumentException e) {
 
                 eyeColor = null;
@@ -213,14 +216,14 @@ public class WorkerFactory {
             for(Country s:Country.values()){
                 System.out.println(s.toString());
             }
-            String preStatus=scanner.nextLine();
+            String preNation;
+            while((preNation=scanner.nextLine()).isEmpty()){}
             try {
-                nationality = Country.valueOf(preStatus.toUpperCase());
+                nationality = Country.valueOf(preNation.toUpperCase());
             }
             catch (IllegalArgumentException e){
                 System.out.println("Your input doesn't contain any of possible countries. Try again");
                 nationality=null;
-                while (scanner.nextLine().isEmpty()){}
             }
         }
 

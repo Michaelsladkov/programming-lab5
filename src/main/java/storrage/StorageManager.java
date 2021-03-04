@@ -7,6 +7,7 @@ import java.util.TreeSet;
 
 public class StorageManager {
     private TreeSet<Worker> storage;
+    private boolean isModified=false;
     public StorageManager(){
         storage=new TreeSet<>();
     }
@@ -26,6 +27,7 @@ public class StorageManager {
         return max;
     }
     public boolean add(Worker w){
+        isModified=true;
         return storage.add(w);
     }
     public Worker getById(int id){
@@ -37,9 +39,15 @@ public class StorageManager {
         return null;
     }
     public boolean remove(Worker w){
+        isModified=true;
         return storage.remove(w);
     }
-    public void clear(){
+    public void clear()
+    {
+        isModified=true;
         storage.clear();
+    }
+    public boolean isModified(){
+        return isModified;
     }
 }
