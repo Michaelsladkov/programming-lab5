@@ -11,9 +11,11 @@ import java.util.Scanner;
 public class WorkerFactory {
     private int id;
     private Scanner scanner;
+
     public WorkerFactory(int startId){
         this.id=startId;
     }
+
     public Worker createWorker(String name, Coordinates coordinates,
                                long salary, ZonedDateTime startDate,
                                LocalDate endDate, Status status,
@@ -49,6 +51,7 @@ public class WorkerFactory {
         Person person=new Person(height, nationality, eyeColor, hairColor);
         return new Worker(name, coordinates, new Date(), salary, startDate, endDate, status, person, id++);
     }
+
     public Worker readWorker() throws NullFieldException, IncorrectValueException{
         String name=null;
         Long x=null;
@@ -76,8 +79,9 @@ public class WorkerFactory {
                 x = scanner.nextLong();
             }
             catch (InputMismatchException e){
-                System.out.print("your input doesn't contain coordinate, try again");
+                System.out.println("your input doesn't contain coordinate, try again");
                 x=null;
+                while (scanner.nextLine().isEmpty()){}
             }
         }
 
@@ -87,8 +91,9 @@ public class WorkerFactory {
                 y = scanner.nextLong();
             }
             catch (InputMismatchException e){
-                System.out.print("your input doesn't contain coordinate, try again");
+                System.out.println("your input doesn't contain coordinate, try again");
                 y=null;
+                while (scanner.nextLine().isEmpty()){}
             }
         }
 
@@ -96,14 +101,15 @@ public class WorkerFactory {
             System.out.print("Enter salary: ");
             try {
                 salary = scanner.nextLong();
+                if(salary<=0){
+                    System.out.println("Salary should be more than 0");
+                    while (scanner.nextLine().isEmpty()){}
+                }
             }
             catch (InputMismatchException e){
-                System.out.print("your input doesn't contain salary, try again");
+                System.out.println("your input doesn't contain salary, try again");
                 salary=null;
-            }
-            if(salary<=0){
-                System.out.println("Salary should be more than 0");
-                salary=null;
+                while (scanner.nextLine().isEmpty()){}
             }
         }
 
@@ -202,5 +208,9 @@ public class WorkerFactory {
         }
 
         return createWorker(name,new Coordinates(x,y),salary,startDate,endDate,status,height,eyeColor,hairColor,nationality);
+    }
+
+    public void setScanner(Scanner s){
+        scanner=s;
     }
 }

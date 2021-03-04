@@ -14,6 +14,7 @@ public class Main {
         WorkerFactory workerFactory = new WorkerFactory(0);
         StorageManager manager = new StorageManager();
         Scanner s = new Scanner(System.in);
+        workerFactory.setScanner(s);
         Invoker i = new Invoker(manager, workerFactory);
         CommandLineListener listener = new CommandLineListener(s, i);
         listener.startRead();
