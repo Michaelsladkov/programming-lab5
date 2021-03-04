@@ -4,9 +4,13 @@ import main.java.data.*;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static java.time.format.DateTimeFormatter.ISO_DATE;
 
 public class WorkerFactory {
     private int id;
@@ -21,7 +25,7 @@ public class WorkerFactory {
                                LocalDate endDate, Status status,
                                Double height, Color eyeColor,
                                Color hairColor, Country nationality) throws NullFieldException, IncorrectValueException {
-        if(name==null||name==""){
+        if(name==null||name.length()==0){
             throw new NullFieldException("Name");
         }
         if(coordinates==null){
@@ -61,8 +65,8 @@ public class WorkerFactory {
         LocalDate endDate=null;
         Status status=null;
         Double height=null;
-        Color eyeColor=null;
-        Color hairColor=null;
+        Color eyeColor;
+        Color hairColor;
         Country nationality=null;
 
         while (name==null){
@@ -70,6 +74,7 @@ public class WorkerFactory {
             name=scanner.findInLine("\\w+");
             if(name==null){
                 System.out.print("your input doesn't contain name, try again");
+                while (scanner.nextLine().isEmpty()){}
             }
         }
 
@@ -122,6 +127,10 @@ public class WorkerFactory {
                 System.out.print("your input doesn't contain date, try again");
                 startDate=null;
             }
+            catch (DateTimeParseException e)
+            {
+                System.out.println("Your format is incorrect. Use default ISO");
+            }
         }
 
         while (endDate==null){
@@ -133,16 +142,21 @@ public class WorkerFactory {
                 System.out.print("your input doesn't contain date, try again");
                 startDate=null;
             }
+            catch (DateTimeParseException e)
+            {
+                System.out.println("Your format is incorrect. Use yyyy-mm-dd");
+            }
         }
 
         while (status==null){
-            System.out.println("Enter on of following states: ");
+            System.out.println("Enter one of following states: ");
             for(Status s:Status.values()){
                 System.out.println(s.toString());
             }
-            String preStatus=scanner.nextLine();
+            String preStatus;
+            while ((preStatus=scanner.nextLine()).isEmpty()){}
             try {
-                status = Status.valueOf(preStatus);
+                status = Status.valueOf(preStatus.toUpperCase());
             }
             catch (IllegalArgumentException e){
                 System.out.println("Your input doesn't contain any of possible states. Try again");
@@ -160,50 +174,53 @@ public class WorkerFactory {
                 System.out.print("your input doesn't contain height, try again");
                 height=null;
             }
-            if(height<=0){
+            if(height!=null) if(height<=0){
                 System.out.println("Height should be more than 0");
                 height=null;
             }
         }
 
         {
-            System.out.println("Enter on of following eyes colors: ");
+            System.out.println("Enter one of following eyes colors: ");
             for (Color s : Color.values()) {
                 System.out.println(s.toString());
             }
-            String preStatus = scanner.nextLine();
+            String preStatus;
+            while((preStatus=scanner.nextLine()).isEmpty()){}
             try {
-                eyeColor = Color.valueOf(preStatus);
+                eyeColor = Color.valueOf(preStatus.toUpperCase());
             } catch (IllegalArgumentException e) {
+
                 eyeColor = null;
             }
         }
 
         {
-            System.out.println("Enter on of following hair colors: ");
+            System.out.println("Enter one of following hair colors: ");
             for (Color s : Color.values()) {
                 System.out.println(s.toString());
             }
             String preStatus = scanner.nextLine();
             try {
-                hairColor = Color.valueOf(preStatus);
+                hairColor = Color.valueOf(preStatus.toUpperCase());
             } catch (IllegalArgumentException e) {
                 hairColor = null;
             }
         }
 
         while (nationality==null){
-            System.out.println("Enter on of following countries: ");
+            System.out.println("Enter one of following countries: ");
             for(Country s:Country.values()){
                 System.out.println(s.toString());
             }
             String preStatus=scanner.nextLine();
             try {
-                nationality = Country.valueOf(preStatus);
+                nationality = Country.valueOf(preStatus.toUpperCase());
             }
             catch (IllegalArgumentException e){
                 System.out.println("Your input doesn't contain any of possible countries. Try again");
                 nationality=null;
+                while (scanner.nextLine().isEmpty()){}
             }
         }
 
