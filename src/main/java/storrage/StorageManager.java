@@ -2,20 +2,24 @@ package main.java.storrage;
 
 import main.java.data.Worker;
 
+import java.time.ZonedDateTime;
 import java.util.Collection;
 import java.util.TreeSet;
 
 public class StorageManager {
     private TreeSet<Worker> storage;
     private boolean isModified=false;
+    private ZonedDateTime initTime;
     public StorageManager(){
         storage=new TreeSet<>();
     }
     public StorageManager(TreeSet<Worker> externalStorage){
         storage=externalStorage;
+        initTime=ZonedDateTime.now();
     }
     public StorageManager(Collection external){
         storage=new TreeSet<>(external);
+        initTime=ZonedDateTime.now();
     }
     public Worker getMax(){
         Worker max = storage.first();
@@ -49,5 +53,20 @@ public class StorageManager {
     }
     public boolean isModified(){
         return isModified;
+    }
+
+    public String[] getInfo(){
+        String type = "this is collection of worker type objects";
+        String init = "initialized "+initTime.toString();
+        String size = "it contains "+storage.size()+" elemnts";
+        String state;
+        if(isModified){
+            state="recently modified";
+        }
+        else{
+            state="all changes are saved";
+        }
+        String[] out= {type,init,size,state};
+        return out;
     }
 }
