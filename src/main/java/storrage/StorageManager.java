@@ -42,6 +42,7 @@ public class StorageManager {
         }
         return null;
     }
+
     public boolean remove(Worker w){
         isModified=true;
         return storage.remove(w);
