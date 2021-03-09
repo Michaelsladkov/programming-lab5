@@ -109,6 +109,7 @@ public class WorkerFactory {
                 salary = scanner.nextLong();
                 if(salary<=0){
                     System.out.println("Salary should be more than 0");
+                    salary=null;
                     while (scanner.nextLine().isEmpty()){}
                 }
             }

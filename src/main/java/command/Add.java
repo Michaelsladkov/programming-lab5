@@ -17,6 +17,7 @@ public class Add implements Command{
     public void execute(String args){
         try {
             manager.add(factory.readWorkerFromConsole());
+            System.out.println("Worker crated");
         }
         catch (IncorrectValueException e){
             System.out.println(e.getMessage());
