@@ -12,6 +12,7 @@ public class StorageManager {
     private ZonedDateTime initTime;
     public StorageManager(){
         storage=new TreeSet<>();
+        initTime=ZonedDateTime.now();
     }
     public StorageManager(TreeSet<Worker> externalStorage){
         storage=externalStorage;
@@ -59,7 +60,7 @@ public class StorageManager {
     public String[] getInfo(){
         String type = "this is collection of worker type objects";
         String init = "initialized "+initTime.toString();
-        String size = "it contains "+storage.size()+" elemnts";
+        String size = "number of elements: "+storage.size();
         String state;
         if(isModified){
             state="recently modified";
@@ -69,5 +70,9 @@ public class StorageManager {
         }
         String[] out= {type,init,size,state};
         return out;
+    }
+
+    public Collection<Worker> getCollection(){
+        return new TreeSet(storage);
     }
 }

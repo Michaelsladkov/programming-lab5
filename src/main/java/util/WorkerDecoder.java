@@ -13,9 +13,9 @@ public class WorkerDecoder {
         System.out.println("Salary: "+w.getSalary());
         System.out.println("Personal stats:");
         Person p = w.getPerson();
-        System.out.println("Height: "+p.getHeight());
-        System.out.println("Eye color: "+p.getEyeColor());
-        System.out.println("Hair color: "+p.getHairColor());
-        System.out.println("Nationality: "+p.getNationality());
+        System.out.println("\tHeight: "+p.getHeight());
+        System.out.println("\tEye color: "+p.getEyeColor());
+        System.out.println("\tHair color: "+p.getHairColor());
+        System.out.println("\tNationality: "+p.getNationality());
     }
 }

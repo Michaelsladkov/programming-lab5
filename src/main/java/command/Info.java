@@ -11,7 +11,7 @@ public class Info implements Command {
     @Override
     public void execute(String args) {
         for(String line:s.getInfo()){
-
+            System.out.println(line);
         }
     }
 }
