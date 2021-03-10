@@ -9,7 +9,7 @@ public class WorkerDecoder {
         System.out.println("id: "+w.getId());
         System.out.println("Name:"+w.getName());
         System.out.println("Coordinates: "+"("+w.getCoordinates().getX()+", "+w.getCoordinates().getY()+")");
-        System.out.println("Start date: "+w.getCreationDate());
+        System.out.println("Start date: "+w.getCreationDate().toString());
         System.out.println("Salary: "+w.getSalary());
         System.out.println("Personal stats:");
         Person p = w.getPerson();
@@ -20,7 +20,18 @@ public class WorkerDecoder {
     }
 
     public String getCSVLine(Worker w){
-        String output="hui";
+        String output="";
+        output+=w.getId()+",";
+        output+=w.getName()+",";
+        output+=w.getCoordinates().getX()+",";
+        output+=w.getCoordinates().getY()+",";
+        output+=w.getCreationDate().toString()+",";
+        output+=w.getSalary()+",";
+        Person p = w.getPerson();
+        output+=p.getHeight()+",";
+        output+=p.getEyeColor()+",";
+        output+=p.getHairColor()+",";
+        output+=p.getNationality();
         return output;
     }
 }

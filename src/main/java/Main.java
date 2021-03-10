@@ -1,4 +1,3 @@
-package main.java;
 
 import command.Invoker;
 import storrage.StorageManager;
@@ -16,9 +15,9 @@ public class Main {
         StorageManager manager = new StorageManager();
         Scanner s = new Scanner(System.in);
         workerFactory.setScanner(s);
-        Invoker i = new Invoker(manager, workerFactory, decoder);
+        FileWorks fileWorks=new FileWorks(decoder);
+        Invoker i = new Invoker(manager, workerFactory, decoder, fileWorks);
         CommandLineListener listener = new CommandLineListener(s, i);
-        FileWorks fileWorks=new FileWorks();
         listener.startRead();
     }
 }

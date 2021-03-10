@@ -68,7 +68,7 @@ public class WorkerFactory {
         Color eyeColor;
         Color hairColor;
         Country nationality=null;
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss a z");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd H:mm:ss z");
 
         while (name==null){
             System.out.print("Enter worker's name: ");
@@ -133,7 +133,7 @@ public class WorkerFactory {
             }
             catch (DateTimeParseException e)
             {
-                System.out.println("Your format is incorrect. Use yyyy-mm-dd hh:mm:ss AM/PM +/-hh:mm");
+                System.out.println("Your format is incorrect. Use yyyy-mm-dd hh:mm:ss +/-hh:mm");
             }
         }
 

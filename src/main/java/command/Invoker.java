@@ -1,6 +1,7 @@
 package command;
 
 import storrage.StorageManager;
+import util.FileWorks;
 import util.WorkerDecoder;
 import util.WorkerFactory;
 
@@ -11,12 +12,14 @@ public class Invoker {
     private StorageManager manager;
     private WorkerFactory factory;
     private WorkerDecoder decoder;
+    private FileWorks fileWorks;
     public boolean isStopRequested=false;
-    public Invoker(StorageManager m, WorkerFactory f, WorkerDecoder d){
+    public Invoker(StorageManager m, WorkerFactory f, WorkerDecoder d, FileWorks fw){
         commandHashMap=new HashMap<>();
         manager=m;
         factory=f;
         decoder=d;
+        fileWorks=fw;
         initHashMap();
     }
 
@@ -27,6 +30,7 @@ public class Invoker {
         commandHashMap.put("info", new Info(manager));
         commandHashMap.put("show", new Show(manager,decoder));
         commandHashMap.put("exit", new Exit(this));
+        commandHashMap.put("save", new Save(fileWorks, manager));
     }
 
     public void execute(String name, String args) throws NullPointerException{

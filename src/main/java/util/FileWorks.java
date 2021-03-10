@@ -2,28 +2,27 @@ package util;
 
 import data.Worker;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.*;
 import java.util.Collection;
 
 public class FileWorks {
     private FileInputStream inputFile;
-    private FileOutputStream outputFile;
-    public FileWorks()
+    private FileWriter outputFile;
+    private WorkerDecoder decoder;
+    public FileWorks(WorkerDecoder d)
     {
-
+        decoder=d;
     }
 
-    public void createOutputFile(){
-        try {
-            outputFile = new FileOutputStream("output.csv");
-        }
-        catch (FileNotFoundException e){
-            System.out.println(e.getMessage());
-        }
-    }
-    public void saveCollection(Collection<Worker> collection){
 
+    public void saveCollection(Collection<Worker> collection) throws IOException{
+        outputFile = new FileWriter("workers.csv");
+        if(outputFile==null){
+            throw new OutputWasntCreatedException();
+        }
+        for(Worker w:collection){
+            outputFile.write(decoder.getCSVLine(w)+"\n");
+        }
+        outputFile.close();
     }
 }
