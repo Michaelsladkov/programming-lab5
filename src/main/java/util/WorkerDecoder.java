@@ -1,7 +1,7 @@
-package main.java.util;
+package util;
 
-import main.java.data.Person;
-import main.java.data.Worker;
+import data.Person;
+import data.Worker;
 
 public class WorkerDecoder {
     public void describe( Worker w){

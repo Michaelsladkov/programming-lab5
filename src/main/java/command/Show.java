@@ -1,8 +1,8 @@
-package main.java.command;
+package command;
 
-import main.java.data.Worker;
-import main.java.storrage.StorageManager;
-import main.java.util.WorkerDecoder;
+import data.Worker;
+import storrage.StorageManager;
+import util.WorkerDecoder;
 
 import java.util.Collection;
 

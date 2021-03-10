@@ -1,6 +1,6 @@
-package main.java.command;
+package command;
 
-import main.java.storrage.StorageManager;
+import storrage.StorageManager;
 
 public class Clear implements Command{
     private final StorageManager storage;

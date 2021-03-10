@@ -1,7 +1,8 @@
-package main.java.command;
+package command;
 
-import main.java.storrage.StorageManager;
+import storrage.StorageManager;
 
+@ThisIsACommand
 public class Info implements Command {
     private StorageManager s;
     public Info(StorageManager manager){

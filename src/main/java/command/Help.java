@@ -1,4 +1,4 @@
-package main.java.command;
+package command;
 
 @ThisIsACommand
 public class Help implements Command{

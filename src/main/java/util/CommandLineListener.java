@@ -1,6 +1,6 @@
-package main.java.util;
+package util;
 
-import main.java.command.Invoker;
+import command.Invoker;
 
 import java.io.InputStream;
 import java.util.Scanner;

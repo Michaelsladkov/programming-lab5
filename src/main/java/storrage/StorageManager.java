@@ -1,6 +1,6 @@
-package main.java.storrage;
+package storrage;
 
-import main.java.data.Worker;
+import data.Worker;
 
 import java.time.ZonedDateTime;
 import java.util.Collection;
@@ -19,7 +19,7 @@ public class StorageManager {
         initTime=ZonedDateTime.now();
     }
     public StorageManager(Collection external){
-        storage=new TreeSet<>(external);
+        storage=new TreeSet<Worker>(external);
         initTime=ZonedDateTime.now();
     }
     public Worker getMax(){
@@ -62,14 +62,13 @@ public class StorageManager {
         String init = "initialized "+initTime.toString();
         String size = "number of elements: "+storage.size();
         String state;
-        if(isModified){
+        if(isModified()){
             state="recently modified";
         }
         else{
             state="all changes are saved";
         }
-        String[] out= {type,init,size,state};
-        return out;
+        return new String[]{type,init,size,state};
     }
 
     public Collection<Worker> getCollection(){

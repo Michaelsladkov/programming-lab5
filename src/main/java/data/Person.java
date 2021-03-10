@@ -1,4 +1,4 @@
-package main.java.data;
+package data;
 
 public class Person {
     private final Double height;

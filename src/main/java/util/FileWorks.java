@@ -1,6 +1,6 @@
-package main.java.util;
+package util;
 
-import main.java.data.Worker;
+import data.Worker;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

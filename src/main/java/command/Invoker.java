@@ -1,8 +1,8 @@
-package main.java.command;
+package command;
 
-import main.java.storrage.StorageManager;
-import main.java.util.WorkerDecoder;
-import main.java.util.WorkerFactory;
+import storrage.StorageManager;
+import util.WorkerDecoder;
+import util.WorkerFactory;
 
 import java.util.HashMap;
 

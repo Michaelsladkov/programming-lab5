@@ -1,6 +1,6 @@
-package main.java.util;
+package util;
 
-import main.java.data.*;
+import data.*;
 
 import java.time.LocalDate;
 import java.time.ZonedDateTime;

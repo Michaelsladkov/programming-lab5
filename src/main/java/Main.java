@@ -1,17 +1,12 @@
 package main.java;
 
-import main.java.command.Invoker;
-import main.java.storrage.StorageManager;
-import main.java.util.CommandLineListener;
-import main.java.util.FileWorks;
-import main.java.util.WorkerDecoder;
-import main.java.util.WorkerFactory;
+import command.Invoker;
+import storrage.StorageManager;
+import util.CommandLineListener;
+import util.FileWorks;
+import util.WorkerDecoder;
+import util.WorkerFactory;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Writer;
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Main {

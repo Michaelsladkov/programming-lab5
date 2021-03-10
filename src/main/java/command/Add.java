@@ -1,10 +1,9 @@
-package main.java.command;
+package command;
 
-import main.java.data.IncorrectValueException;
-import main.java.data.NullFieldException;
-import main.java.storrage.StorageManager;
-import main.java.util.CommandLineListener;
-import main.java.util.WorkerFactory;
+import data.IncorrectValueException;
+import data.NullFieldException;
+import storrage.StorageManager;
+import util.WorkerFactory;
 
 public class Add implements Command{
     private final WorkerFactory factory;

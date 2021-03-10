@@ -1,4 +1,4 @@
-package main.java.util;
+package util;
 
 public class OutputWasntCreatedException extends RuntimeException{
     public OutputWasntCreatedException(){
