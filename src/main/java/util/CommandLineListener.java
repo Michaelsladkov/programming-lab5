@@ -49,7 +49,12 @@ public class CommandLineListener {
             catch (IllegalStateException e){
                 args="";
             }
-            invoker.execute(command,args);
-        } while(!line.equals("stop"));
+            try {
+                invoker.execute(command, args);
+            }
+            catch (NullPointerException e){
+                System.out.println("Your input doesn't match any command");
+            }
+        } while(!invoker.isStopRequested);
     }
 }
