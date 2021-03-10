@@ -2,6 +2,7 @@ package command;
 
 import storrage.StorageManager;
 
+@ThisIsACommand
 public class Clear implements Command{
     private final StorageManager storage;
 

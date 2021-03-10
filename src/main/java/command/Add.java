@@ -5,6 +5,7 @@ import data.NullFieldException;
 import storrage.StorageManager;
 import util.WorkerFactory;
 
+@ThisIsACommand
 public class Add implements Command{
     private final WorkerFactory factory;
     private final StorageManager manager;
