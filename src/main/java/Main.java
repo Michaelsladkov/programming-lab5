@@ -3,6 +3,7 @@ package main.java;
 import main.java.command.Invoker;
 import main.java.storrage.StorageManager;
 import main.java.util.CommandLineListener;
+import main.java.util.FileWorks;
 import main.java.util.WorkerDecoder;
 import main.java.util.WorkerFactory;
 
@@ -22,6 +23,7 @@ public class Main {
         workerFactory.setScanner(s);
         Invoker i = new Invoker(manager, workerFactory, decoder);
         CommandLineListener listener = new CommandLineListener(s, i);
+        FileWorks fileWorks=new FileWorks();
         listener.startRead();
     }
 }

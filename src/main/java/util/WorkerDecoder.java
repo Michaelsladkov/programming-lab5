@@ -18,4 +18,9 @@ public class WorkerDecoder {
         System.out.println("\tHair color: "+p.getHairColor());
         System.out.println("\tNationality: "+p.getNationality());
     }
+
+    public String getCSVLine(Worker w){
+        String output="hui";
+        return output;
+    }
 }

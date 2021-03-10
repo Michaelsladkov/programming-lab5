@@ -1,5 +1,5 @@
 package main.java.command;
-
+@ThisIsACommand
 public class Exit implements Command{
     private Invoker i;
     public Exit(Invoker invoker){
