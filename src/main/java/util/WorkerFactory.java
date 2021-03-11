@@ -2,6 +2,8 @@ package util;
 
 import data.*;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -24,7 +26,16 @@ public class WorkerFactory {
                                long salary, ZonedDateTime startDate,
                                LocalDate endDate, Status status,
                                Double height, Color eyeColor,
-                               Color hairColor, Country nationality) throws NullFieldException, IncorrectValueException {
+                               Color hairColor, Country nationality) throws NullFieldException, IncorrectValueException{
+        return createWorkerWithIdAndDate(name,coordinates,salary,startDate,endDate,status,height,eyeColor,hairColor,nationality, ++id, new Date());
+    }
+
+    public Worker createWorkerWithIdAndDate(String name, Coordinates coordinates,
+                               long salary, ZonedDateTime startDate,
+                               LocalDate endDate, Status status,
+                               Double height, Color eyeColor,
+                               Color hairColor, Country nationality,
+                               int _id, Date creationDate) throws NullFieldException, IncorrectValueException {
         if(name==null||name.length()==0){
             throw new NullFieldException("Name");
         }
@@ -53,7 +64,7 @@ public class WorkerFactory {
             throw new IncorrectValueException("Height", "Should be more than 0");
         }
         Person person=new Person(height, nationality, eyeColor, hairColor);
-        return new Worker(name, coordinates, new Date(), salary, startDate, endDate, status, person, id++);
+        return new Worker(name, coordinates, creationDate, salary, startDate, endDate, status, person, _id);
     }
 
     public Worker readWorkerFromConsole() throws NullFieldException, IncorrectValueException{
@@ -233,5 +244,23 @@ public class WorkerFactory {
 
     public void setScanner(Scanner s){
         scanner=s;
+    }
+
+    public Worker getFromCSV(String line, int num) throws IncorrectFileException, NullFieldException, IncorrectValueException{
+        String[] fields=line.split(",");
+        if(fields.length!=12){
+            throw new IncorrectFileException(num);
+        }
+        try {
+            return createWorkerWithIdAndDate(fields[0],
+                    new Coordinates(Long.parseLong(fields[1]), Long.parseLong(fields[2])),
+                    Long.parseLong(fields[3]), ZonedDateTime.parse(fields[4]), LocalDate.parse(fields[5]),
+                    Status.valueOf(fields[6]), Double.parseDouble(fields[7]),
+                    Color.valueOf(fields[8]), Color.valueOf(fields[9]), Country.valueOf(fields[10]),
+                    Integer.parseInt(fields[11]), DateFormat.getDateInstance().parse(fields[12]));
+        }
+        catch (ParseException e){
+            throw new IncorrectValueException("creation date","unable to parse" );
+        }
     }
 }
