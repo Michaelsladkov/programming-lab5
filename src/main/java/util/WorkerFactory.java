@@ -28,15 +28,15 @@ public class WorkerFactory {
                                LocalDate endDate, Status status,
                                Double height, Color eyeColor,
                                Color hairColor, Country nationality) throws NullFieldException, IncorrectValueException{
-        return createWorkerWithIdAndDate(name,coordinates,salary,startDate,endDate,status,height,eyeColor,hairColor,nationality, ++id, new Date());
+        return createWorkerWithIdAndDate(++id, name,coordinates,salary,startDate,endDate,status,height,eyeColor,hairColor,nationality, new Date());
     }
 
-    public Worker createWorkerWithIdAndDate(String name, Coordinates coordinates,
+    public Worker createWorkerWithIdAndDate(int _id, String name, Coordinates coordinates,
                                long salary, ZonedDateTime startDate,
                                LocalDate endDate, Status status,
                                Double height, Color eyeColor,
                                Color hairColor, Country nationality,
-                               int _id, Date creationDate) throws NullFieldException, IncorrectValueException {
+                                Date creationDate) throws NullFieldException, IncorrectValueException {
         if(name==null||name.length()==0){
             throw new NullFieldException("Name");
         }
@@ -252,19 +252,22 @@ public class WorkerFactory {
 
     public Worker getFromCSV(String line, int num) throws IncorrectFileException, NullFieldException, IncorrectValueException{
         String[] fields=line.split(",");
-        if(fields.length!=12){
+        if(fields.length!=13){
             throw new IncorrectFileException(num);
         }
         try {
-            return createWorkerWithIdAndDate(fields[0],
-                    new Coordinates(Long.parseLong(fields[1]), Long.parseLong(fields[2])),
-                    Long.parseLong(fields[3]), ZonedDateTime.parse(fields[4]), LocalDate.parse(fields[5]),
-                    Status.valueOf(fields[6]), Double.parseDouble(fields[7]),
-                    Color.valueOf(fields[8]), Color.valueOf(fields[9]), Country.valueOf(fields[10]),
-                    Integer.parseInt(fields[11]), DateFormat.getDateInstance().parse(fields[12]));
+            return createWorkerWithIdAndDate(Integer.parseInt(fields[0]),fields[1],
+                    new Coordinates(Long.parseLong(fields[2]), Long.parseLong(fields[3])),
+                    Long.parseLong(fields[4]), ZonedDateTime.parse(fields[5]), LocalDate.parse(fields[6]),
+                    Status.valueOf(fields[7]), Double.parseDouble(fields[8]),
+                    Color.valueOf(fields[9]), Color.valueOf(fields[10]), Country.valueOf(fields[11]),
+                     DateFormat.getDateInstance().parse(fields[12]));
         }
         catch (ParseException e){
             throw new IncorrectValueException("creation date","unable to parse" );
+        }
+        catch (NumberFormatException e){
+            throw new IncorrectValueException();
         }
     }
 

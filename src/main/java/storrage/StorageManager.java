@@ -10,18 +10,22 @@ public class StorageManager {
     private TreeSet<Worker> storage;
     private boolean isModified=false;
     private ZonedDateTime initTime;
+
     public StorageManager(){
         storage=new TreeSet<>();
         initTime=ZonedDateTime.now();
     }
+
     public StorageManager(TreeSet<Worker> externalStorage){
         storage=externalStorage;
         initTime=ZonedDateTime.now();
     }
+
     public StorageManager(Collection external){
         storage=new TreeSet<Worker>(external);
         initTime=ZonedDateTime.now();
     }
+
     public Worker getMax(){
         Worker max = storage.first();
         for(Worker w : storage){
@@ -31,10 +35,12 @@ public class StorageManager {
         }
         return max;
     }
+
     public boolean add(Worker w){
         isModified=true;
         return storage.add(w);
     }
+
     public Worker getById(int id){
         for(Worker w : storage){
            if(w.getId()==id){
@@ -71,7 +77,26 @@ public class StorageManager {
         return new String[]{type,init,size,state};
     }
 
+    public long getMaxId(){
+        long maxId=storage.first().getId();
+        for(Worker w:storage){
+            if(w.getId()>maxId){
+                maxId=w.getId();
+            }
+        }
+        return maxId;
+    }
+
+    public void hasBeenSaved(){
+        isModified=false;
+    }
+
     public Collection<Worker> getCollection(){
         return new TreeSet(storage);
+    }
+
+    public void load(Collection<Worker> collection){
+        storage.addAll(collection);
+        isModified=true;
     }
 }
