@@ -18,7 +18,7 @@ public class Save implements Command {
     public void execute(String args) {
         try {
             fileWorks.saveCollection(manager.getCollection());
-            System.out.print("Collection saved successfully");
+            System.out.println("Collection saved successfully");
         }
         catch (IOException e){
             System.out.println(e.getMessage());

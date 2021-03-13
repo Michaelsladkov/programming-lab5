@@ -4,9 +4,9 @@ import data.Worker;
 
 import java.io.*;
 import java.util.Collection;
+import java.util.TreeSet;
 
 public class FileWorks {
-    private FileInputStream inputFile;
     private FileWriter outputFile;
     private WorkerDecoder decoder;
     public FileWorks(WorkerDecoder d)
@@ -25,4 +25,8 @@ public class FileWorks {
         }
         outputFile.close();
     }
+
+    /*public TreeSet<Worker> readCollection(FileReader reader){
+        while((String line=reader.))
+    }*/
 }

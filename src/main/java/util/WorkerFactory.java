@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 import static java.time.format.DateTimeFormatter.ISO_DATE;
@@ -76,70 +77,63 @@ public class WorkerFactory {
         LocalDate endDate=null;
         Status status=null;
         Double height=null;
-        Color eyeColor;
-        Color hairColor;
+        Color eyeColor=null;
+        Color hairColor=null;
         Country nationality=null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd H:mm:ss z");
 
         while (name==null){
             System.out.print("Enter worker's name: ");
-            name=scanner.findInLine("\\w+");
+            name=readLine();
             if(name==null){
-                System.out.print("your input doesn't contain name, try again");
-                while (scanner.nextLine().isEmpty()){}
+                System.out.println("your input doesn't contain name, try again");
             }
         }
 
         while (x==null){
             System.out.print("Enter x coordinate: ");
             try {
-                x = scanner.nextLong();
+                x = Long.parseLong(readLine());
             }
-            catch (InputMismatchException e){
+            catch (NumberFormatException e){
                 System.out.println("your input doesn't contain coordinate, try again");
                 x=null;
-                while (scanner.nextLine().isEmpty()){}
             }
         }
 
         while (y==null){
             System.out.print("Enter y coordinate: ");
             try {
-                y = scanner.nextLong();
+                y = Long.parseLong(readLine());
             }
-            catch (InputMismatchException e){
+            catch (NumberFormatException e){
                 System.out.println("your input doesn't contain coordinate, try again");
                 y=null;
-                while (scanner.nextLine().isEmpty()){}
             }
         }
 
         while (salary==null){
             System.out.print("Enter salary: ");
             try {
-                salary = scanner.nextLong();
-                if(salary<=0){
+                salary = Long.parseLong(readLine());
+                if(salary!=null&&salary<=0){
                     System.out.println("Salary should be more than 0");
                     salary=null;
-                    while (scanner.nextLine().isEmpty()){}
                 }
             }
-            catch (InputMismatchException e){
+            catch (NumberFormatException e){
                 System.out.println("your input doesn't contain salary, try again");
                 salary=null;
-                while (scanner.nextLine().isEmpty()){}
             }
         }
 
         while (startDate==null){
             System.out.print("Enter start date: ");
-            String preDate;
-            while((preDate=scanner.nextLine()).isEmpty()){}
             try {
-                startDate = ZonedDateTime.parse(preDate, formatter);
+                startDate = ZonedDateTime.parse(readLine(), formatter);
             }
-            catch (InputMismatchException e){
-                System.out.print("your input doesn't contain date, try again");
+            catch (NullPointerException e){
+                System.out.println("your input doesn't contain date, try again");
                 startDate=null;
             }
             catch (DateTimeParseException e)
@@ -151,10 +145,10 @@ public class WorkerFactory {
         while (endDate==null){
             System.out.print("Enter end date: ");
             try {
-                endDate = LocalDate.parse(scanner.next());
+                endDate = LocalDate.parse(readLine());
             }
-            catch (InputMismatchException e){
-                System.out.print("your input doesn't contain date, try again");
+            catch (NullPointerException e){
+                System.out.println("your input doesn't contain date, try again");
                 startDate=null;
             }
             catch (DateTimeParseException e)
@@ -168,12 +162,14 @@ public class WorkerFactory {
             for(Status s:Status.values()){
                 System.out.println(s.toString());
             }
-            String preStatus;
-            while ((preStatus=scanner.nextLine()).isEmpty()){}
             try {
-                status = Status.valueOf(preStatus.toUpperCase());
+                status = Status.valueOf(readLine().toUpperCase());
             }
             catch (IllegalArgumentException e){
+                System.out.println("Your input doesn't contain any of possible states. Try again");
+                status=null;
+            }
+            catch (NullPointerException e){
                 System.out.println("Your input doesn't contain any of possible states. Try again");
                 status=null;
             }
@@ -183,10 +179,10 @@ public class WorkerFactory {
         {
             System.out.print("Enter height: ");
             try {
-                height = scanner.nextDouble();
+                height = Double.parseDouble(readLine());
             }
-            catch (InputMismatchException e){
-                System.out.print("your input doesn't contain height, try again");
+            catch (NullPointerException e){
+                System.out.println("your input doesn't contain height, try again");
                 height=null;
             }
             if(height!=null) if(height<=0){
@@ -195,31 +191,37 @@ public class WorkerFactory {
             }
         }
 
-        {
+        while(eyeColor==null){
             System.out.println("Enter one of following eyes colors: ");
             for (Color s : Color.values()) {
                 System.out.println(s.toString());
             }
-            String preColor;
-            while((preColor=scanner.nextLine()).isEmpty()){}
             try {
-                eyeColor = Color.valueOf(preColor.toUpperCase());
-            } catch (IllegalArgumentException e) {
-
+                eyeColor = Color.valueOf(readLine().toUpperCase());
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("Your input doesn't contain any of possible states. Try again");
                 eyeColor = null;
+            }
+            catch (NullPointerException e){
+                break;
             }
         }
 
-        {
+        while (hairColor==null){
             System.out.println("Enter one of following hair colors: ");
             for (Color s : Color.values()) {
                 System.out.println(s.toString());
             }
-            String preStatus = scanner.nextLine();
             try {
-                hairColor = Color.valueOf(preStatus.toUpperCase());
-            } catch (IllegalArgumentException e) {
+                hairColor = Color.valueOf(readLine().toUpperCase());
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("Your input doesn't contain any of possible states. Try again");
                 hairColor = null;
+            }
+            catch (NullPointerException e){
+                break;
             }
         }
 
@@ -228,12 +230,14 @@ public class WorkerFactory {
             for(Country s:Country.values()){
                 System.out.println(s.toString());
             }
-            String preNation;
-            while((preNation=scanner.nextLine()).isEmpty()){}
             try {
-                nationality = Country.valueOf(preNation.toUpperCase());
+                nationality = Country.valueOf(readLine().toUpperCase());
             }
             catch (IllegalArgumentException e){
+                System.out.println("Your input doesn't contain any of possible countries. Try again");
+                nationality=null;
+            }
+            catch (NullPointerException e){
                 System.out.println("Your input doesn't contain any of possible countries. Try again");
                 nationality=null;
             }
@@ -262,5 +266,17 @@ public class WorkerFactory {
         catch (ParseException e){
             throw new IncorrectValueException("creation date","unable to parse" );
         }
+    }
+
+    private String readLine(){
+        String line;
+        try {
+            line = scanner.nextLine();
+        }
+        catch (NoSuchElementException e){
+            line=null;
+        }
+        if(line.length()==0) line=null;
+        return line;
     }
 }

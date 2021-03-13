@@ -3,6 +3,7 @@ package util;
 import command.Invoker;
 
 import java.io.InputStream;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -30,7 +31,12 @@ public class CommandLineListener {
         String command;
         String args;
         do {
-            line = scanner.nextLine();
+            try {
+                line = scanner.nextLine();
+            }
+            catch (NoSuchElementException e){
+                break;
+            }
             Matcher matcher = commandNamePattern.matcher(line);
             matcher.find();
             try{
@@ -38,7 +44,7 @@ public class CommandLineListener {
             }
             catch (IllegalStateException e){
                 System.out.println("Your input is not a command");
-                command="";
+                continue;
             }
             line=line.substring(command.length());
             matcher = argsPattern.matcher(line);
