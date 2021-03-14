@@ -1,4 +1,4 @@
-package storrage;
+package util;
 
 import data.Worker;
 

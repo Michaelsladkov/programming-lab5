@@ -1,6 +1,6 @@
 package command;
 
-import storrage.StorageManager;
+import util.StorageManager;
 
 @ThisIsACommand
 public class Clear implements Command{

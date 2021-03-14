@@ -1,6 +1,6 @@
 package command;
 
-import storrage.StorageManager;
+import util.StorageManager;
 import util.FileWorks;
 import util.WorkerDecoder;
 import util.WorkerFactory;
@@ -37,6 +37,8 @@ public class Invoker {
         commandHashMap.put("add_if_min", new AddIfMin(manager, factory));
         commandHashMap.put("remove_lower", new RemoveLower(manager, factory));
         commandHashMap.put("remove_all_by_status", new RemoveAllByStatus(manager, factory));
+        commandHashMap.put("min_by_end_date", new MinByEndDate(manager,decoder));
+        commandHashMap.put("print_field_descending_salary", new PrintFieldDescendingSalary(manager));
     }
 
     public void execute(String name, String args) throws NullPointerException{
