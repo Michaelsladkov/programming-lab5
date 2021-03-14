@@ -31,6 +31,8 @@ public class Invoker {
         commandHashMap.put("show", new Show(manager,decoder));
         commandHashMap.put("exit", new Exit(this));
         commandHashMap.put("save", new Save(fileWorks, manager));
+        commandHashMap.put("update", new Update(manager,factory));
+        commandHashMap.put("remove_by_id", new RemoveById(manager));
     }
 
     public void execute(String name, String args) throws NullPointerException{
