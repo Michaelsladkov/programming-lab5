@@ -37,7 +37,7 @@ public class WorkerDecoder {
         output+=p.getEyeColor()+",";
         output+=p.getHairColor()+",";
         output+=p.getNationality()+",";
-        output+=w.getCreationDate().toString();
+        output+=w.getCreationDate().getTime();
         return output;
     }
 }

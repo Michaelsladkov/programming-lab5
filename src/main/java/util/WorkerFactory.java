@@ -3,13 +3,14 @@ package util;
 import data.*;
 
 import java.text.DateFormat;
+import java.text.FieldPosition;
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
-import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -250,25 +251,83 @@ public class WorkerFactory {
         scanner=s;
     }
 
-    public Worker getFromCSV(String line, int num) throws IncorrectFileException, NullFieldException, IncorrectValueException{
-        String[] fields=line.split(",");
-        if(fields.length!=13){
+    public Worker getFromCSV(String line, int num) throws IncorrectFileException, NullFieldException, IncorrectValueException {
+        int id;
+        String name;
+        Coordinates coordinates;
+        long salary;
+        ZonedDateTime startDate;
+        LocalDate endDate;
+        Status status;
+        Double height;
+        Color eyeColor;
+        Color hairColor;
+        Country nationality;
+        Date creationDate;
+        String[] fields = line.split(",");
+        if (fields.length != 13) {
             throw new IncorrectFileException(num);
         }
         try {
-            return createWorkerWithIdAndDate(Integer.parseInt(fields[0]),fields[1],
-                    new Coordinates(Long.parseLong(fields[2]), Long.parseLong(fields[3])),
-                    Long.parseLong(fields[4]), ZonedDateTime.parse(fields[5]), LocalDate.parse(fields[6]),
-                    Status.valueOf(fields[7]), Double.parseDouble(fields[8]),
-                    Color.valueOf(fields[9]), Color.valueOf(fields[10]), Country.valueOf(fields[11]),
-                     DateFormat.getDateInstance().parse(fields[12]));
+            id = Integer.parseInt(fields[0]);
+        } catch (NumberFormatException e) {
+            throw new IncorrectValueException("id", "unable to parse");
         }
-        catch (ParseException e){
-            throw new IncorrectValueException("creation date","unable to parse" );
+        name = fields[1];
+        if (name == "null") name = null;
+        try {
+            coordinates=new Coordinates(Long.parseLong(fields[2]), Long.parseLong(fields[3]));
+        }catch (NumberFormatException e) {
+            throw new IncorrectValueException("Coordinates", "unable to parse");
         }
-        catch (NumberFormatException e){
-            throw new IncorrectValueException();
+        try{
+            salary=Long.parseLong(fields[4]);
+        }catch (NumberFormatException e) {
+            throw new IncorrectValueException("Salary", "unable to parse");
         }
+        try{
+            startDate=ZonedDateTime.parse(fields[5]);
+        }catch (DateTimeParseException e) {
+            throw new IncorrectValueException("StartDate", "unable to parse");
+        }
+        try{
+            endDate= LocalDate.parse(fields[6]);
+        }catch (DateTimeParseException e) {
+            throw new IncorrectValueException("StartDate", "unable to parse");
+        }
+        try {
+            status=Status.valueOf(fields[7]);
+        } catch (IllegalArgumentException e){
+            if(fields[7]==null) throw new IncorrectValueException("Status value is incorrect");
+            else throw new IncorrectValueException("Status", "unable to parse");
+        }
+        try{
+            height=Double.parseDouble(fields[8]);
+        } catch (NumberFormatException e){throw new IncorrectValueException("Height", "unable to parse");}
+        try{
+            eyeColor=Color.valueOf(fields[9]);
+        } catch (IllegalArgumentException e){
+            if(fields[9].equals("null")) eyeColor=null;
+            else throw new IncorrectValueException("eyeColor", "unable to parse");
+        }
+        try{
+            hairColor=Color.valueOf(fields[10]);
+        } catch (IllegalArgumentException e){
+            if(fields[10].equals("null")) hairColor=null;
+            else throw new IncorrectValueException("hairColor", "unable to parse");
+        }
+        try {
+            nationality=Country.valueOf(fields[11]);
+        } catch (IllegalArgumentException e){
+            if(fields[11].equals("null")) throw new IncorrectValueException("Nationality value is incorrect");
+            else throw new IncorrectValueException("Nationality", "unable to parse");
+        }
+        try{
+            creationDate= new Date(Long.parseLong(fields[12]));
+        }catch (NumberFormatException e) {
+            throw new IncorrectValueException("CreationDate", "unable to parse");
+        }
+        return createWorkerWithIdAndDate(id,name,coordinates,salary,startDate,endDate,status,height,eyeColor,hairColor, nationality,creationDate);
     }
 
     private String readLine(){
@@ -281,5 +340,9 @@ public class WorkerFactory {
         }
         if(line.length()==0) line=null;
         return line;
+    }
+
+    public void setStartId(int newId){
+        id=newId;
     }
 }

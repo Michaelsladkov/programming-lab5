@@ -46,11 +46,8 @@ public class FileWorks {
             catch (IncorrectFileException e){
                 System.out.println(e.getMessage());
             }
-            catch (NullFieldException e){
-                System.out.println("In line "+lineNumber+e.getMessage());
-            }
-            catch (IncorrectValueException e){
-                System.out.println("In line "+lineNumber+e.getMessage());
+            catch (NullFieldException | IncorrectValueException e){
+                System.out.println("In line "+lineNumber+" "+e.getMessage());
             }
         }
         scanner.close();

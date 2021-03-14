@@ -24,6 +24,7 @@ public class Main {
             try {
                 FileReader reader=new FileReader(args[0]);
                 manager.load(fileWorks.readCollection(reader));
+                workerFactory.setStartId(manager.getMaxId());
             }
             catch (FileNotFoundException e){
                 System.out.println("No such file.");

@@ -4,6 +4,7 @@ import data.Worker;
 
 import java.time.ZonedDateTime;
 import java.util.Collection;
+import java.util.NoSuchElementException;
 import java.util.TreeSet;
 
 public class StorageManager {
@@ -77,8 +78,14 @@ public class StorageManager {
         return new String[]{type,init,size,state};
     }
 
-    public long getMaxId(){
-        long maxId=storage.first().getId();
+    public int getMaxId(){
+        int maxId;
+        try {
+            maxId=storage.first().getId();
+        }catch (NoSuchElementException e){
+            return 0;
+        }
+
         for(Worker w:storage){
             if(w.getId()>maxId){
                 maxId=w.getId();
