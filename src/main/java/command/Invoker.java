@@ -39,6 +39,7 @@ public class Invoker {
         commandHashMap.put("remove_all_by_status", new RemoveAllByStatus(manager, factory));
         commandHashMap.put("min_by_end_date", new MinByEndDate(manager,decoder));
         commandHashMap.put("print_field_descending_salary", new PrintFieldDescendingSalary(manager));
+        commandHashMap.put("execute_script", new ExecuteScript(this));
     }
 
     public void execute(String name, String args) throws NullPointerException{

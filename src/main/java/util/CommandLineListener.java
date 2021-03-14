@@ -60,7 +60,9 @@ public class CommandLineListener {
             }
             catch (NullPointerException e){
                 System.out.println("Your input doesn't match any command");
+                System.out.println(command);
+                System.out.println(args);
             }
-        } while(!invoker.isStopRequested);
+        } while(!invoker.isStopRequested&&scanner.hasNext());
     }
 }
