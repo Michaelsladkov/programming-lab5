@@ -10,4 +10,9 @@ public class Exit implements Command{
     public void execute(String args) {
         i.isStopRequested=true;
     }
+
+    @Override
+    public String description() {
+        return "This command stops running of this application\n";
+    }
 }

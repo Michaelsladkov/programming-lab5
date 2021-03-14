@@ -13,4 +13,9 @@ public class Clear implements Command{
         storage.clear();
         System.out.println("Collection cleared");
     }
+
+    @Override
+    public String description() {
+        return "This command clears the collection\n";
+    }
 }
