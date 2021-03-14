@@ -1,6 +1,5 @@
 package command;
 
-@ThisIsACommand
 public class Exit implements Command{
     private Invoker i;
     Exit(Invoker invoker){

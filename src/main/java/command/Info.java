@@ -2,7 +2,6 @@ package command;
 
 import util.StorageManager;
 
-@ThisIsACommand
 public class Info implements Command {
     private StorageManager s;
     Info(StorageManager manager){

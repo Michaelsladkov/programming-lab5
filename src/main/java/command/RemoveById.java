@@ -2,7 +2,6 @@ package command;
 
 import util.StorageManager;
 
-@ThisIsACommand
 public class RemoveById implements Command{
     private StorageManager manager;
     RemoveById(StorageManager m){

@@ -4,10 +4,8 @@ import data.Worker;
 import util.StorageManager;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 
-@ThisIsACommand
 public class PrintFieldDescendingSalary implements Command{
     private StorageManager manager;
     PrintFieldDescendingSalary(StorageManager m){

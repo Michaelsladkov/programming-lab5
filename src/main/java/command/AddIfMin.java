@@ -6,7 +6,6 @@ import data.Worker;
 import util.StorageManager;
 import util.WorkerFactory;
 
-@ThisIsACommand
 public class AddIfMin implements Command{
     private StorageManager manager;
     private WorkerFactory factory;
@@ -34,5 +33,11 @@ public class AddIfMin implements Command{
             System.out.println(e.getMessage());
             return;
         }
+    }
+
+    @Override
+    public String description() {
+        return "This command allows you to enter your worker and save it to collection\n" +
+                "Saving is only proceeds if entered worker is less than minimal from collection\n";
     }
 }

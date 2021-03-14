@@ -3,13 +3,14 @@ package util;
 import command.Invoker;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommandLineListener {
-    private InputStream stream;
+    private InputStreamReader stream;
     private Scanner scanner;
     private String line;
     private Invoker invoker;
@@ -22,7 +23,7 @@ public class CommandLineListener {
         argsPattern = Pattern.compile("\\b(\\w*\\s*)*");
     }
 
-    public void setStream(InputStream stream){
+    public void setReader(InputStreamReader stream){
         this.stream=stream;
         scanner=new Scanner(stream);
     }

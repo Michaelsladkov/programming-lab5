@@ -1,6 +1,5 @@
 package command;
 
-@ThisIsACommand
 public class Help implements Command{
     Help(){}
 

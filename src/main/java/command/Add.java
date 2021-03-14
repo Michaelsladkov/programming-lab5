@@ -5,7 +5,6 @@ import data.NullFieldException;
 import util.StorageManager;
 import util.WorkerFactory;
 
-@ThisIsACommand
 public class Add implements Command{
     private final WorkerFactory factory;
     private final StorageManager manager;
@@ -13,6 +12,7 @@ public class Add implements Command{
         this.factory=factory;
         this.manager=manager;
     }
+
     @Override
     public void execute(String args){
         try {
@@ -25,5 +25,11 @@ public class Add implements Command{
         catch (NullFieldException e){
             System.out.println(e.getMessage());
         }
+    }
+
+    @Override
+    public String description() {
+        return "This command allows you to enter new worker and write it to collection\n" +
+                "There are input messages whih will help you to enter all the data\n";
     }
 }

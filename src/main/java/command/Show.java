@@ -6,7 +6,6 @@ import util.WorkerDecoder;
 
 import java.util.Collection;
 
-@ThisIsACommand
 public class Show implements Command {
     private StorageManager s;
     private WorkerDecoder d;

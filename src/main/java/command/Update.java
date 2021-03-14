@@ -5,7 +5,6 @@ import data.NullFieldException;
 import util.StorageManager;
 import util.WorkerFactory;
 
-@ThisIsACommand
 public class Update implements Command{
     private StorageManager manager;
     private WorkerFactory factory;

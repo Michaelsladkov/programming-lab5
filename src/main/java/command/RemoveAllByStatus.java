@@ -5,7 +5,6 @@ import data.Worker;
 import util.StorageManager;
 import util.WorkerFactory;
 
-@ThisIsACommand
 public class RemoveAllByStatus implements Command{
     private StorageManager manager;
     private WorkerFactory factory;

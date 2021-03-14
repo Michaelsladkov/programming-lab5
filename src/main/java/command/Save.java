@@ -5,7 +5,6 @@ import util.FileWorks;
 
 import java.io.IOException;
 
-@ThisIsACommand
 public class Save implements Command {
     private FileWorks fileWorks;
     private StorageManager manager;

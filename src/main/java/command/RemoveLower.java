@@ -6,7 +6,6 @@ import data.Worker;
 import util.StorageManager;
 import util.WorkerFactory;
 
-@ThisIsACommand
 public class RemoveLower implements Command{
     private StorageManager manager;
     private WorkerFactory factory;
