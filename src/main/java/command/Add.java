@@ -9,7 +9,7 @@ import util.WorkerFactory;
 public class Add implements Command{
     private final WorkerFactory factory;
     private final StorageManager manager;
-    public Add(StorageManager manager, WorkerFactory factory){
+    Add(StorageManager manager, WorkerFactory factory){
         this.factory=factory;
         this.manager=manager;
     }

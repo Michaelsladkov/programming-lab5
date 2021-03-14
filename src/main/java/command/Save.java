@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Save implements Command {
     private FileWorks fileWorks;
     private StorageManager manager;
-    public Save( FileWorks f, StorageManager m){
+    Save( FileWorks f, StorageManager m){
         fileWorks=f;
         manager=m;
     }

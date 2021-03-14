@@ -10,7 +10,7 @@ import java.util.Collection;
 public class Show implements Command {
     private StorageManager s;
     private WorkerDecoder d;
-    public Show(StorageManager manager, WorkerDecoder decoder){
+    Show(StorageManager manager, WorkerDecoder decoder){
         s=manager;
         d=decoder;
     }

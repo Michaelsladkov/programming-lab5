@@ -9,7 +9,7 @@ import util.WorkerFactory;
 public class Update implements Command{
     private StorageManager manager;
     private WorkerFactory factory;
-    public Update(StorageManager m, WorkerFactory f){
+    Update(StorageManager m, WorkerFactory f){
         manager=m;
         factory=f;
     }

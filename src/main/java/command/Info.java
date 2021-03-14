@@ -5,7 +5,7 @@ import storrage.StorageManager;
 @ThisIsACommand
 public class Info implements Command {
     private StorageManager s;
-    public Info(StorageManager manager){
+    Info(StorageManager manager){
         s=manager;
     }
 

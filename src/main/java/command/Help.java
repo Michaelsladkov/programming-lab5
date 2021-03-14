@@ -2,7 +2,7 @@ package command;
 
 @ThisIsACommand
 public class Help implements Command{
-    public Help(){}
+    Help(){}
 
     @Override
     public void execute(String args) {

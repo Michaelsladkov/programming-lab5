@@ -6,7 +6,7 @@ import storrage.StorageManager;
 public class Clear implements Command{
     private final StorageManager storage;
 
-    public Clear(StorageManager storage){
+    Clear(StorageManager storage){
         this.storage=storage;
     }
     @Override

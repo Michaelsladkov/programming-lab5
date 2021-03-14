@@ -3,7 +3,7 @@ package command;
 @ThisIsACommand
 public class Exit implements Command{
     private Invoker i;
-    public Exit(Invoker invoker){
+    Exit(Invoker invoker){
         i=invoker;
     }
 
