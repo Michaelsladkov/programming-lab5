@@ -14,4 +14,9 @@ public class Info implements Command {
             System.out.println(line);
         }
     }
+
+    @Override
+    public String description() {
+        return "This command shows general information about the collection\n";
+    }
 }
