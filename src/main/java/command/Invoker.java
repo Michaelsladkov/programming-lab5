@@ -33,6 +33,10 @@ public class Invoker {
         commandHashMap.put("save", new Save(fileWorks, manager));
         commandHashMap.put("update", new Update(manager,factory));
         commandHashMap.put("remove_by_id", new RemoveById(manager));
+        commandHashMap.put("add_if_max", new AddIfMax(manager,factory));
+        commandHashMap.put("add_if_min", new AddIfMin(manager, factory));
+        commandHashMap.put("remove_lower", new RemoveLower(manager, factory));
+        commandHashMap.put("remove_all_by_status", new RemoveAllByStatus(manager, factory));
     }
 
     public void execute(String name, String args) throws NullPointerException{

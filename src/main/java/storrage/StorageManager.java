@@ -28,13 +28,33 @@ public class StorageManager {
     }
 
     public Worker getMax(){
-        Worker max = storage.first();
+        Worker max;
+        try {
+            max = storage.first();
+        }catch (NoSuchElementException e) {
+            return null;
+        }
         for(Worker w : storage){
             if(max.compareTo(w)>0){
                 max=w;
             }
         }
         return max;
+    }
+
+    public Worker getMin(){
+        Worker min;
+        try {
+            min = storage.first();
+        }catch (NoSuchElementException e) {
+            return null;
+        }
+        for(Worker w : storage){
+            if(min.compareTo(w)<0){
+                min=w;
+            }
+        }
+        return min;
     }
 
     public boolean add(Worker w){

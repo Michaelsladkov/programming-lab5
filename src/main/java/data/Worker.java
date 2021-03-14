@@ -41,6 +41,7 @@ public class Worker implements Comparable<Worker> {
 
     @Override
     public int compareTo (Worker w) {
+        if(w==null){return -1;}
         if(this.getValue()>w.getValue()){return -1;}
         if (this.getValue()<w.getValue()){return 1;}
         return 0;

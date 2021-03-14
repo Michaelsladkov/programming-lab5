@@ -24,6 +24,7 @@ public class RemoveById implements Command{
         }
         try {
             manager.remove(manager.getById(id));
+            System.out.println("Element removed");
         } catch (NullPointerException e){
             System.out.println("No worker with this id found");
             return;

@@ -330,7 +330,7 @@ public class WorkerFactory {
         return createWorkerWithIdAndDate(id,name,coordinates,salary,startDate,endDate,status,height,eyeColor,hairColor, nationality,creationDate);
     }
 
-    private String readLine(){
+    public String readLine(){
         String line;
         try {
             line = scanner.nextLine();
