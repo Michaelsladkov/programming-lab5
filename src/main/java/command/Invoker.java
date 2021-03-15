@@ -6,6 +6,7 @@ import util.WorkerDecoder;
 import util.WorkerFactory;
 
 import java.util.HashMap;
+import java.util.TreeSet;
 
 public class Invoker {
     private HashMap<String, Command> commandHashMap;
@@ -13,7 +14,8 @@ public class Invoker {
     private WorkerFactory factory;
     private WorkerDecoder decoder;
     private FileWorks fileWorks;
-    public boolean isStopRequested=false;
+    private boolean isStopRequested=false;
+    private final Class[] allowedToStop = {Exit.class};
     public Invoker(StorageManager m, WorkerFactory f, WorkerDecoder d, FileWorks fw){
         commandHashMap=new HashMap<>();
         manager=m;
@@ -45,5 +47,18 @@ public class Invoker {
 
     public void execute(String name, String args) throws NullPointerException{
         commandHashMap.get(name).execute(args);
+    }
+
+    public void requestExit(Object requester){
+        for(Class c:allowedToStop){
+            if(c.equals(requester.getClass())){
+                isStopRequested=true;
+                break;
+            }
+        }
+    }
+
+    public boolean isStopRequested(){
+        return isStopRequested;
     }
 }

@@ -8,7 +8,7 @@ public class Exit implements Command{
 
     @Override
     public void execute(String args) {
-        i.isStopRequested=true;
+        i.requestExit(this);
     }
 
     @Override

@@ -64,6 +64,6 @@ public class CommandLineListener {
                 System.out.println(command);
                 System.out.println(args);
             }
-        } while(!invoker.isStopRequested&&scanner.hasNext());
+        } while(!invoker.isStopRequested()&&scanner.hasNext());
     }
 }
