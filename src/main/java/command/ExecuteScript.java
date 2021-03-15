@@ -5,6 +5,7 @@ import util.CommandLineListener;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashSet;
+import java.util.Scanner;
 
 public class ExecuteScript implements Command {
     private Invoker invoker;
@@ -28,13 +29,14 @@ public class ExecuteScript implements Command {
             System.out.println("No such file.");
             return;
         }
-        listener.setReader(scriptReader);
-        System.out.println("execution");
+        listener=new CommandLineListener(new Scanner(scriptReader), invoker);
         listener.startRead();
+        scriptFiles.clear();
     }
 
     @Override
     public String description() {
-        return "This command reads your file and execute commands from it\n";
+        return "This command reads your file and execute commands from it\n" +
+                "Recursive scripts are restricted\n";
     }
 }
