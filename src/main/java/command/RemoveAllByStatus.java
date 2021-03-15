@@ -1,5 +1,6 @@
 package command;
 
+import data.NullFieldException;
 import data.Status;
 import data.Worker;
 import util.StorageManager;
@@ -24,11 +25,7 @@ public class RemoveAllByStatus implements Command{
             try {
                 status = Status.valueOf(factory.readLine().toUpperCase());
             }
-            catch (IllegalArgumentException e){
-                System.out.println("Your input doesn't contain any of possible states. Try again");
-                status=null;
-            }
-            catch (NullPointerException e){
+            catch (IllegalArgumentException| NullPointerException e){
                 System.out.println("Your input doesn't contain any of possible states. Try again");
                 status=null;
             }
@@ -42,5 +39,10 @@ public class RemoveAllByStatus implements Command{
         if(!manager.isModified()){
             System.out.println("no elements with this status found");
         }
+    }
+
+    @Override
+    public String description() {
+        return "Removes all workers with given status\n";
     }
 }

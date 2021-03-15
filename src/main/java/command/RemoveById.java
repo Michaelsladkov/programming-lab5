@@ -29,4 +29,9 @@ public class RemoveById implements Command{
             return;
         }
     }
+
+    @Override
+    public String description() {
+        return "This command gets worker id and remove worker with that id from collection\n";
+    }
 }

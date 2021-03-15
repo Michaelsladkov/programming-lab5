@@ -24,4 +24,9 @@ public class Show implements Command {
             d.describe(w);
         }
     }
+
+    @Override
+    public String description() {
+        return "This command shows detailed description of each worker in collection\n";
+    }
 }

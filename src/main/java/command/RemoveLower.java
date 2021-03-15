@@ -7,8 +7,8 @@ import util.StorageManager;
 import util.WorkerFactory;
 
 public class RemoveLower implements Command{
-    private StorageManager manager;
-    private WorkerFactory factory;
+    private final StorageManager manager;
+    private final WorkerFactory factory;
     RemoveLower(StorageManager m, WorkerFactory f){
         manager=m;
         factory=f;
@@ -25,13 +25,14 @@ public class RemoveLower implements Command{
             }
             System.out.println("All lower elements have been removed");
         }
-        catch (IncorrectValueException e){
+        catch (IncorrectValueException| NullFieldException e){
             System.out.println(e.getMessage());
             return;
         }
-        catch (NullFieldException e){
-            System.out.println(e.getMessage());
-            return;
-        }
+    }
+
+    @Override
+    public String description() {
+        return "This command takes worker from console and remove all smaller workers from collection\n";
     }
 }

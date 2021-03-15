@@ -5,10 +5,18 @@ import data.NullFieldException;
 import data.Worker;
 import util.StorageManager;
 import util.WorkerFactory;
-
+/** AddIfMax command
+ * Begins reading worker from console and add it to collection if it is more than maximal element in collection
+ */
 public class AddIfMax implements Command{
     private StorageManager manager;
     private WorkerFactory factory;
+
+    /**
+     * Constructor for this command
+     * @param m - receiver, collection manager
+     * @param f - factory class for workers
+     */
     AddIfMax(StorageManager m, WorkerFactory f){
         manager=m;
         factory=f;
@@ -25,11 +33,7 @@ public class AddIfMax implements Command{
                 System.out.println("Your worker isn't greater than max from collection");
             }
         }
-        catch (IncorrectValueException e){
-            System.out.println(e.getMessage());
-            return;
-        }
-        catch (NullFieldException e){
+        catch (IncorrectValueException|NullFieldException e){
             System.out.println(e.getMessage());
             return;
         }

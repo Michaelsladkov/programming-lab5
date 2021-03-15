@@ -23,4 +23,10 @@ public class Save implements Command {
             System.out.println(e.getMessage());
         }
     }
+
+    @Override
+    public String description() {
+        return "This command writes csv file with collection elements - to be opened next time\n" +
+                "File name is workers.csv\n";
+    }
 }

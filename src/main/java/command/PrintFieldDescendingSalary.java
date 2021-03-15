@@ -34,4 +34,9 @@ public class PrintFieldDescendingSalary implements Command{
             System.out.println(a);
         }
     }
+
+    @Override
+    public String description() {
+        return "Returns list of salaries in descending order\n";
+    }
 }

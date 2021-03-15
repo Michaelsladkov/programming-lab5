@@ -6,8 +6,8 @@ import util.StorageManager;
 import util.WorkerFactory;
 
 public class Update implements Command{
-    private StorageManager manager;
-    private WorkerFactory factory;
+    private final StorageManager manager;
+    private final WorkerFactory factory;
     Update(StorageManager m, WorkerFactory f){
         manager=m;
         factory=f;
@@ -37,14 +37,15 @@ public class Update implements Command{
             manager.add(factory.readWorkerFromConsole());
             System.out.println("Worker updated");
         }
-        catch (IncorrectValueException e){
-            System.out.println(e.getMessage());
-            return;
-        }
-        catch (NullFieldException e){
+        catch (IncorrectValueException|NullFieldException e){
             System.out.println(e.getMessage());
             return;
         }
         factory.setStartId(manager.getMaxId());
+    }
+
+    @Override
+    public String description() {
+        return "This command reads new worker and save it to collection with id given in argument\n";
     }
 }

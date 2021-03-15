@@ -32,4 +32,9 @@ public class MinByEndDate implements Command{
         }
         decoder.describe(first);
     }
+
+    @Override
+    public String description() {
+        return "Gives detailed description of worker with minimal value of endDate field\n";
+    }
 }

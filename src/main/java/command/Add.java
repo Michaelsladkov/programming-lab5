@@ -5,9 +5,18 @@ import data.NullFieldException;
 import util.StorageManager;
 import util.WorkerFactory;
 
+/** Add command
+ * Begins reading worker from console and add it to collection
+ */
 public class Add implements Command{
     private final WorkerFactory factory;
     private final StorageManager manager;
+
+    /**
+     * Command constructor
+     * @param manager - receiver, collection manager
+     * @param factory - factory class for workers
+     */
     Add(StorageManager manager, WorkerFactory factory){
         this.factory=factory;
         this.manager=manager;
@@ -19,10 +28,7 @@ public class Add implements Command{
             manager.add(factory.readWorkerFromConsole());
             System.out.println("Worker created");
         }
-        catch (IncorrectValueException e){
-            System.out.println(e.getMessage());
-        }
-        catch (NullFieldException e){
+        catch (IncorrectValueException|NullFieldException e){
             System.out.println(e.getMessage());
         }
     }
