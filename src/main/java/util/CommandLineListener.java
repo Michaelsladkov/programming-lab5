@@ -20,7 +20,7 @@ public class CommandLineListener {
         scanner=s;
         invoker=i;
         commandNamePattern = Pattern.compile("^\\w+");
-        argsPattern = Pattern.compile("\\b(\\w*\\s*)*");
+        argsPattern = Pattern.compile("\\b(\\.*\\s*)*");
     }
 
     public void setReader(InputStreamReader stream){
@@ -61,8 +61,6 @@ public class CommandLineListener {
             }
             catch (NullPointerException e){
                 System.out.println("Your input doesn't match any command");
-                System.out.println(command);
-                System.out.println(args);
             }
         } while(!invoker.isStopRequested()&&scanner.hasNext());
     }
