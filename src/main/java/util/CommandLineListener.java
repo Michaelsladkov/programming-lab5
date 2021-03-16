@@ -9,13 +9,21 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * This class is responsible for listening command line? separating command name and arguments and invoker calling
+ */
 public class CommandLineListener {
     private InputStreamReader stream;
     private Scanner scanner;
     private String line;
     private Invoker invoker;
-    Pattern commandNamePattern;
-    Pattern argsPattern;
+    private final Pattern commandNamePattern;
+    private final Pattern argsPattern;
+
+    /**
+     * @param s - scanner, source of commands (usually System.in or File reader connected to script
+     * @param i
+     */
     public CommandLineListener(Scanner s, Invoker i){
         scanner=s;
         invoker=i;
@@ -23,11 +31,11 @@ public class CommandLineListener {
         argsPattern = Pattern.compile("\\b(\\.*\\s*)*");
     }
 
-    public void setReader(InputStreamReader stream){
-        this.stream=stream;
-        scanner=new Scanner(stream);
-    }
-
+    /**
+     * starts reading loop
+     * this loop reads commands ad calls invoker
+     * loop is finished if input is empty or exit command is activated
+     */
     public void startRead(){
         String command;
         String args;
