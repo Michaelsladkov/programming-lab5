@@ -31,13 +31,13 @@ public class FileWorks {
      * @throws IOException if it is unable to write a file
      */
     public void saveCollection(Collection<Worker> collection) throws IOException{
-        FileWriter outputFile;
-        if (outputFilePath == null) outputFile = new FileWriter("workers.csv");
+        FileOutputStream outputFile;
+        if (outputFilePath == null) outputFile = new FileOutputStream("workers.csv");
         else{
-            outputFile=new FileWriter(outputFilePath);
+            outputFile=new FileOutputStream(outputFilePath);
         }
         for(Worker worker:collection){
-            outputFile.write(decoder.getCSVLine(worker)+"\n");
+            outputFile.write(decoder.getCSVLine(worker).getBytes());
         }
         outputFile.close();
         manager.hasBeenSaved();

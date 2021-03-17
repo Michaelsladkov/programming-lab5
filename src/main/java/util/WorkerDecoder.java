@@ -37,20 +37,20 @@ public class WorkerDecoder {
      */
     public String getCSVLine(Worker worker){
         String output="";
-        output+=worker.getId()+",";
-        output+=worker.getName()+",";
-        output+=worker.getCoordinates().getX()+",";
-        output+=worker.getCoordinates().getY()+",";
-        output+=worker.getSalary()+",";
-        output+=worker.getStartDate().toString()+",";
-        output+=worker.getEndDate().toString()+",";
-        output+=worker.getStatus()+",";
+        output += worker.getId()+",";
+        output += worker.getName()+",";
+        output += worker.getCoordinates().getX()+",";
+        output += worker.getCoordinates().getY()+",";
+        output += worker.getSalary()+",";
+        output += worker.getStartDate().toString()+",";
+        output += worker.getEndDate().toString()+",";
+        output += worker.getStatus()+",";
         Person person = worker.getPerson();
-        output+=person.getHeight()+",";
-        output+=person.getEyeColor()+",";
-        output+=person.getHairColor()+",";
-        output+=person.getNationality()+",";
-        output+=worker.getCreationDate().getTime();
+        output += person.getHeight()+",";
+        output += person.getEyeColor()+",";
+        output += person.getHairColor()+",";
+        output += person.getNationality()+",";
+        output += worker.getCreationDate().getTime()+"\n";
         return output;
     }
 }

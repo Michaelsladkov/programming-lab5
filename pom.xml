@@ -4,7 +4,7 @@
 
     <groupId>msladkov.com</groupId>
     <artifactId>lab5</artifactId>
-    <version>1.1-fixingCode</version>
+    <version>1.2-AttemptToPass</version>
     <build>
         <plugins>
             <plugin>
@@ -31,7 +31,7 @@
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
                                         <Main-Class>Main</Main-Class>
-                                        <Build-Number>0.3</Build-Number>
+                                        <Build-Number>0.4</Build-Number>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
