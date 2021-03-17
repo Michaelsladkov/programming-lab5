@@ -31,6 +31,10 @@ public class FieldsReader {
         scanner=newScanner;
     }
 
+    /**
+     * Reads and checks name value
+     * @return allowed name
+     */
     public String readName(){
         String name = null;
         while (name == null){
@@ -62,6 +66,10 @@ public class FieldsReader {
         return coordinate;
     }
 
+    /**
+     * Reads and checks salary value
+     * @return checked salary
+     */
     public Long readSalary(){
         Long salary = null;
         while (salary == null){
@@ -81,6 +89,10 @@ public class FieldsReader {
         return salary;
     }
 
+    /**
+     * reads line from input
+     * @return null or not empty line
+     */
     public String readLine(){
         String line;
         try {
@@ -93,6 +105,10 @@ public class FieldsReader {
         return line;
     }
 
+    /**
+     * Reads and checks start date value
+     * @return checked start date
+     */
     public ZonedDateTime readStartDate(){
         ZonedDateTime startDate = null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd H:mm:ss z");
@@ -113,6 +129,10 @@ public class FieldsReader {
         return  startDate;
     }
 
+    /**
+     * Reads and checks end date value
+     * @return checked end date
+     */
     public LocalDate readEndDate(){
         LocalDate endDate = null;
         while (endDate == null){
@@ -132,6 +152,11 @@ public class FieldsReader {
         return endDate;
     }
 
+    /**
+     * Reads and checks color value
+     * @param fieldName eyeColor or hairColor
+     * @return checked color
+     */
     public Color readColor(String fieldName){
         Color color = null;
         while(color == null){
@@ -153,6 +178,10 @@ public class FieldsReader {
         return color;
     }
 
+    /**
+     * Reads and checks status value
+     * @return checked status
+     */
     public Status readStatus(){
         Status status = null;
         while (status==null){
@@ -171,6 +200,10 @@ public class FieldsReader {
         return status;
     }
 
+    /**
+     * Reads and checks height value
+     * @return checked height
+     */
     public Double readHeight(){
         Double height = null;
         while (height == null)
@@ -191,6 +224,10 @@ public class FieldsReader {
         return height;
     }
 
+    /**
+     * Reads and checks nationality value
+     * @return checked country
+     */
     public Country readNationality(){
         Country nationality = null;
         while (nationality == null){
