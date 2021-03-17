@@ -23,7 +23,7 @@ public class CommandLineListener {
         this.scanner = scanner;
         this.invoker = invoker;
         commandNamePattern = Pattern.compile("^\\w+");
-        argsPattern = Pattern.compile("\\b(\\.*\\s*)*");
+        argsPattern = Pattern.compile("\\b(.*\\s*)*");
     }
 
     /**
@@ -60,6 +60,8 @@ public class CommandLineListener {
             catch (IllegalStateException e){
                 args = "";
             }
+            System.out.println(command);
+            System.out.println(args);
             invoker.execute(command, args);
         } while(!invoker.isStopRequested()&&scanner.hasNext());
     }
