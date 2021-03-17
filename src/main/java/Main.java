@@ -35,7 +35,6 @@ public class Main {
                 fileWorks.setOutputFile(args[0]);
                 manager.load(fileWorks.readCollection(reader));
                 workerFactory.setStartId(manager.getMaxId());
-                System.out.println("Collection read successfully");
             }
             catch (FileNotFoundException e){
                 System.out.println("No such file.");
