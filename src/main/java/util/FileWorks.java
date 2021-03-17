@@ -5,7 +5,6 @@ import data.NullFieldException;
 import data.Worker;
 
 import java.io.*;
-import java.nio.file.Path;
 import java.util.Collection;
 import java.util.Scanner;
 import java.util.TreeSet;
