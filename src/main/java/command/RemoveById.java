@@ -3,9 +3,9 @@ package command;
 import util.StorageManager;
 
 public class RemoveById implements Command{
-    private StorageManager manager;
-    RemoveById(StorageManager m){
-        manager=m;
+    private final StorageManager manager;
+    RemoveById(StorageManager storageManager){
+        manager=storageManager;
     }
 
     @Override
@@ -26,7 +26,6 @@ public class RemoveById implements Command{
             System.out.println("Element removed");
         } catch (NullPointerException e){
             System.out.println("No worker with this id found");
-            return;
         }
     }
 

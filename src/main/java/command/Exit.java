@@ -7,18 +7,18 @@ package command;
  * @see util.CommandLineListener
  */
 public class Exit implements Command{
-    private final Invoker i;
+    private final Invoker invoker;
     /**
      * Constructor for this command
      * @param invoker - Invoker, translated to this class to init new
      */
     Exit(Invoker invoker){
-        i=invoker;
+        this.invoker=invoker;
     }
 
     @Override
     public void execute(String args) {
-        i.requestExit(this);
+        invoker.requestExit(this);
     }
 
     @Override

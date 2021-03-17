@@ -3,14 +3,14 @@ package command;
 import util.StorageManager;
 
 public class Info implements Command {
-    private StorageManager s;
+    private final StorageManager storageManager;
     Info(StorageManager manager){
-        s=manager;
+        storageManager = manager;
     }
 
     @Override
     public void execute(String args) {
-        for(String line:s.getInfo()){
+        for(String line:storageManager.getInfo()){
             System.out.println(line);
         }
     }

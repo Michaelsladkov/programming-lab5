@@ -18,8 +18,8 @@ public class Add implements Command{
      * @param factory - factory class for workers
      */
     Add(StorageManager manager, WorkerFactory factory){
-        this.factory=factory;
-        this.manager=manager;
+        this.factory = factory;
+        this.manager = manager;
     }
 
     @Override
@@ -36,6 +36,6 @@ public class Add implements Command{
     @Override
     public String description() {
         return "This command allows you to enter new worker and write it to collection\n" +
-                "There are input messages whih will help you to enter all the data\n";
+                "There are input messages which will help you to enter all the data\n";
     }
 }

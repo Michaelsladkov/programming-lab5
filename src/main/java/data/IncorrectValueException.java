@@ -1,9 +1,6 @@
 package data;
 
 public class IncorrectValueException extends Exception{
-    public IncorrectValueException(){
-        super("One of your values is incorrect");
-    }
     public IncorrectValueException(String fieldName){
         super(fieldName+" can't be null");
     }

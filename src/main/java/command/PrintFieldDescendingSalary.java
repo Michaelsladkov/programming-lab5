@@ -4,34 +4,22 @@ import data.Worker;
 import util.StorageManager;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class PrintFieldDescendingSalary implements Command{
-    private StorageManager manager;
-    PrintFieldDescendingSalary(StorageManager m){
-        manager=m;
+    private final StorageManager manager;
+    PrintFieldDescendingSalary(StorageManager storageManager){
+        manager = storageManager;
     }
 
     @Override
     public void execute(String args) {
-        ArrayList<Long> salaries=new ArrayList<>();
-        for(Worker w:manager.getCollection()){
-            salaries.add(w.getSalary());
+        ArrayList<Long> salaries = new ArrayList<>();
+        for(Worker worker:manager.getCollection()){
+            salaries.add(worker.getSalary());
         }
-        salaries.sort(new Comparator<Long>() {
-            @Override
-            public int compare(Long o1, Long o2) {
-                if(o1<o2){
-                    return 1;
-                }
-                if(o1>o2){
-                    return -1;
-                }
-                return 0;
-            }
-        });
-        for(long a:salaries){
-            System.out.println(a);
+        salaries.sort((o1, o2) -> Long.compare(o2, o1));
+        for(long salary:salaries){
+            System.out.println(salary);
         }
     }
 

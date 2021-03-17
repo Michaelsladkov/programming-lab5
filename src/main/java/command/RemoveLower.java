@@ -9,17 +9,17 @@ import util.WorkerFactory;
 public class RemoveLower implements Command{
     private final StorageManager manager;
     private final WorkerFactory factory;
-    RemoveLower(StorageManager m, WorkerFactory f){
-        manager=m;
-        factory=f;
+    RemoveLower(StorageManager storageManager, WorkerFactory workerFactory){
+        manager = storageManager;
+        factory = workerFactory;
     }
 
     @Override
     public void execute(String args) {
         try {
-            Worker w = factory.readWorkerFromConsole();
+            Worker worker = factory.readWorkerFromConsole();
             for(Worker collected:manager.getCollection()){
-                if(w.compareTo(collected)<0){
+                if(worker.compareTo(collected)<0){
                     manager.remove(collected);
                 }
             }
@@ -27,7 +27,6 @@ public class RemoveLower implements Command{
         }
         catch (IncorrectValueException| NullFieldException e){
             System.out.println(e.getMessage());
-            return;
         }
     }
 

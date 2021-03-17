@@ -8,11 +8,11 @@ import java.util.NoSuchElementException;
 import java.util.TreeSet;
 
 public class MinByEndDate implements Command{
-    private StorageManager manager;
-    private WorkerDecoder decoder;
-    MinByEndDate(StorageManager m, WorkerDecoder d){
-        manager=m;
-        decoder=d;
+    private final StorageManager manager;
+    private final WorkerDecoder decoder;
+    MinByEndDate(StorageManager storageManager, WorkerDecoder workerDecoder){
+        manager = storageManager;
+        decoder = workerDecoder;
     }
 
     @Override
@@ -25,9 +25,9 @@ public class MinByEndDate implements Command{
             System.out.println("collection is empty");
             return;
         }
-        for (Worker w:tmp) {
-            if (w.getEndDate().compareTo(first.getEndDate()) < 0) {
-                first = w;
+        for (Worker worker:tmp) {
+            if (worker.getEndDate().compareTo(first.getEndDate()) < 0) {
+                first = worker;
             }
         }
         decoder.describe(first);

@@ -8,13 +8,13 @@ import java.util.Map;
  * Shows help about all commands
  */
 public class Help implements Command{
-    private HashMap<String, Command> commands;
+    private final HashMap<String, Command> commands;
 
     /**
      * Constructor for this command
      * @param c - hash map with all commands, taken from invoker. It is used to get access to description() method of each command
      */
-    Help(HashMap<String, Command> c){commands=c;}
+    Help(HashMap<String, Command> commands){this.commands = commands;}
 
     @Override
     public void execute(String args) {

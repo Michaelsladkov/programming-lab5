@@ -7,21 +7,21 @@ import util.WorkerDecoder;
 import java.util.Collection;
 
 public class Show implements Command {
-    private StorageManager s;
-    private WorkerDecoder d;
+    private final StorageManager storageManager;
+    private final WorkerDecoder workerDecoder;
     Show(StorageManager manager, WorkerDecoder decoder){
-        s=manager;
-        d=decoder;
+        storageManager=manager;
+        workerDecoder=decoder;
     }
 
     @Override
     public void execute(String args) {
-        Collection<Worker> collection=s.getCollection();
+        Collection<Worker> collection=storageManager.getCollection();
         if(collection.size()==0){
             System.out.println("Nothing to show");
         }
         for(Worker w:collection){
-            d.describe(w);
+            workerDecoder.describe(w);
         }
     }
 

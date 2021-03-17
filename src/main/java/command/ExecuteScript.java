@@ -12,17 +12,16 @@ import java.util.Scanner;
  * Takes text file and read commands from it
  */
 public class ExecuteScript implements Command {
-    private Invoker invoker;
-    private CommandLineListener listener;
+    private final Invoker invoker;
     private static final HashSet<String> scriptFiles=new HashSet<>();
 
     /**
      * Constructor for this command
-     * @param i - Invoker, translated to this class to init new
+     * @param invoker - Invoker, translated to this class to init new
      * @see CommandLineListener
      */
-    ExecuteScript(Invoker i){
-        invoker=i;
+    ExecuteScript(Invoker invoker){
+        this.invoker=invoker;
     }
 
     @Override
@@ -39,7 +38,7 @@ public class ExecuteScript implements Command {
             System.out.println("No such file.");
             return;
         }
-        listener=new CommandLineListener(new Scanner(scriptReader), invoker);
+        CommandLineListener listener = new CommandLineListener(new Scanner(scriptReader), invoker);
         listener.startRead();
         scriptFiles.clear();
     }

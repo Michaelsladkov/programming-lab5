@@ -12,7 +12,7 @@ public class Clear implements Command{
      * @param storage - receiver, collection manager
      */
     Clear(StorageManager storage){
-        this.storage=storage;
+        this.storage = storage;
     }
     @Override
     public void execute(String args){

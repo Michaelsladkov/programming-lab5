@@ -6,11 +6,11 @@ import util.FileWorks;
 import java.io.IOException;
 
 public class Save implements Command {
-    private FileWorks fileWorks;
-    private StorageManager manager;
-    Save( FileWorks f, StorageManager m){
-        fileWorks=f;
-        manager=m;
+    private final FileWorks fileWorks;
+    private final StorageManager manager;
+    Save( FileWorks fileWorks, StorageManager storageManager){
+        this.fileWorks = fileWorks;
+        manager = storageManager;
     }
 
     @Override

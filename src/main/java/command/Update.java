@@ -8,9 +8,9 @@ import util.WorkerFactory;
 public class Update implements Command{
     private final StorageManager manager;
     private final WorkerFactory factory;
-    Update(StorageManager m, WorkerFactory f){
-        manager=m;
-        factory=f;
+    Update(StorageManager storageManager, WorkerFactory workerFactory){
+        manager=storageManager;
+        factory=workerFactory;
     }
 
     @Override

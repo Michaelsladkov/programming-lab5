@@ -1,39 +1,28 @@
 package command;
 
-import data.NullFieldException;
 import data.Status;
 import data.Worker;
+import util.FieldsReader;
 import util.StorageManager;
 import util.WorkerFactory;
 
 public class RemoveAllByStatus implements Command{
-    private StorageManager manager;
-    private WorkerFactory factory;
-    RemoveAllByStatus(StorageManager m, WorkerFactory f){
-        manager=m;
-        factory=f;
+    private final StorageManager manager;
+    private final WorkerFactory factory;
+    private final FieldsReader fieldsReader;
+    RemoveAllByStatus(StorageManager storageManager, WorkerFactory workerFactory, FieldsReader fieldsReader){
+        manager = storageManager;
+        factory = workerFactory;
+        this.fieldsReader=fieldsReader;
     }
 
     @Override
     public void execute(String args) {
-        Status status=null;
-        while (status==null){
-            System.out.println("Enter one of following states: ");
-            for(Status s:Status.values()){
-                System.out.println(s.toString());
-            }
-            try {
-                status = Status.valueOf(factory.readLine().toUpperCase());
-            }
-            catch (IllegalArgumentException| NullPointerException e){
-                System.out.println("Your input doesn't contain any of possible states. Try again");
-                status=null;
-            }
-        }
-        for(Worker w:manager.getCollection()){
-            if(w.getStatus()==status){
-                manager.remove(w);
-                System.out.println("id "+w.getId()+" removed");
+        Status status = fieldsReader.readStatus();
+        for(Worker worker:manager.getCollection()){
+            if(worker.getStatus()==status){
+                manager.remove(worker);
+                System.out.println("id "+worker.getId()+" removed");
             }
         }
         if(!manager.isModified()){

@@ -1,27 +1,26 @@
 package command;
 
-import util.StorageManager;
-import util.FileWorks;
-import util.WorkerDecoder;
-import util.WorkerFactory;
+import util.*;
 
 import java.util.HashMap;
-import java.util.TreeSet;
+
 
 public class Invoker {
-    private HashMap<String, Command> commandHashMap;
-    private StorageManager manager;
-    private WorkerFactory factory;
-    private WorkerDecoder decoder;
-    private FileWorks fileWorks;
+    private final HashMap<String, Command> commandHashMap;
+    private final StorageManager manager;
+    private final WorkerFactory factory;
+    private final WorkerDecoder decoder;
+    private final FileWorks fileWorks;
+    private final FieldsReader fieldsReader;
     private boolean isStopRequested=false;
     private final Class[] allowedToStop = {Exit.class};
-    public Invoker(StorageManager m, WorkerFactory f, WorkerDecoder d, FileWorks fw){
+    public Invoker(StorageManager storageManager, WorkerFactory workerFactory, WorkerDecoder workerDecoder, FileWorks fileWorks, FieldsReader fieldsReader){
         commandHashMap=new HashMap<>();
-        manager=m;
-        factory=f;
-        decoder=d;
-        fileWorks=fw;
+        manager = storageManager;
+        factory = workerFactory;
+        decoder = workerDecoder;
+        this.fileWorks = fileWorks;
+        this.fieldsReader = fieldsReader;
         initHashMap();
     }
 
@@ -38,7 +37,7 @@ public class Invoker {
         commandHashMap.put("add_if_max", new AddIfMax(manager,factory));
         commandHashMap.put("add_if_min", new AddIfMin(manager, factory));
         commandHashMap.put("remove_lower", new RemoveLower(manager, factory));
-        commandHashMap.put("remove_all_by_status", new RemoveAllByStatus(manager, factory));
+        commandHashMap.put("remove_all_by_status", new RemoveAllByStatus(manager, factory, fieldsReader));
         commandHashMap.put("min_by_end_date", new MinByEndDate(manager,decoder));
         commandHashMap.put("print_field_descending_salary", new PrintFieldDescendingSalary(manager));
         commandHashMap.put("execute_script", new ExecuteScript(this));
@@ -50,9 +49,9 @@ public class Invoker {
     }
 
     public void requestExit(Object requester){
-        for(Class c:allowedToStop){
-            if(c.equals(requester.getClass())){
-                isStopRequested=true;
+        for(Class caller:allowedToStop){
+            if(caller.equals(requester.getClass())){
+                isStopRequested = true;
                 break;
             }
         }

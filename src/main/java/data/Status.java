@@ -5,5 +5,5 @@ public enum Status {
     PROBATION,
     HIRED,
     REGULAR,
-    RECOMMENDED_FOR_PROMOTION;
+    RECOMMENDED_FOR_PROMOTION
 }

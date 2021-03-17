@@ -17,16 +17,6 @@ public class StorageManager {
         initTime=ZonedDateTime.now();
     }
 
-    public StorageManager(TreeSet<Worker> externalStorage){
-        storage=externalStorage;
-        initTime=ZonedDateTime.now();
-    }
-
-    public StorageManager(Collection external){
-        storage=new TreeSet<Worker>(external);
-        initTime=ZonedDateTime.now();
-    }
-
     public Worker getMax(){
         Worker max;
         try {
@@ -118,8 +108,8 @@ public class StorageManager {
         isModified=false;
     }
 
-    public Collection<Worker> getCollection(){
-        return new TreeSet(storage);
+    public TreeSet<Worker> getCollection(){
+        return new TreeSet<Worker>(storage);
     }
 
     public void load(Collection<Worker> collection){

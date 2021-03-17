@@ -1,10 +1,6 @@
 
 import command.Invoker;
-import util.StorageManager;
-import util.CommandLineListener;
-import util.FileWorks;
-import util.WorkerDecoder;
-import util.WorkerFactory;
+import util.*;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,15 +8,16 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args){
-        WorkerFactory workerFactory = new WorkerFactory(0);
         WorkerDecoder decoder = new WorkerDecoder();
         StorageManager manager = new StorageManager();
-        Scanner s = new Scanner(System.in);
-        workerFactory.setScanner(s);
-        FileWorks fileWorks=new FileWorks(decoder, manager, workerFactory);
-        Invoker i = new Invoker(manager, workerFactory, decoder, fileWorks);
-        CommandLineListener listener = new CommandLineListener(s, i);
-        if(args.length!=0){
+        Scanner scanner = new Scanner(System.in);
+        FieldsReader fieldsReader = new FieldsReader(scanner);
+        WorkerFactory workerFactory = new WorkerFactory(0, fieldsReader);
+        workerFactory.setScanner(scanner);
+        FileWorks fileWorks = new FileWorks(decoder, manager, workerFactory);
+        Invoker invoker = new Invoker(manager, workerFactory, decoder, fileWorks, fieldsReader);
+        CommandLineListener listener = new CommandLineListener(scanner, invoker);
+        if(args.length != 0){
             try {
                 FileReader reader=new FileReader(args[0]);
                 manager.load(fileWorks.readCollection(reader));
