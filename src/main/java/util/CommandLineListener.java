@@ -1,9 +1,6 @@
 package util;
 
 import command.Invoker;
-
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -13,20 +10,18 @@ import java.util.regex.Pattern;
  * This class is responsible for listening command line? separating command name and arguments and invoker calling
  */
 public class CommandLineListener {
-    private InputStreamReader stream;
-    private Scanner scanner;
-    private String line;
-    private Invoker invoker;
+    private final Scanner scanner;
+    private final Invoker invoker;
     private final Pattern commandNamePattern;
     private final Pattern argsPattern;
 
     /**
-     * @param s - scanner, source of commands (usually System.in or File reader connected to script
-     * @param i
+     * @param scanner - scanner, source of commands (usually System.in or File reader connected to script
+     * @param invoker - invoker which will execute received commands
      */
-    public CommandLineListener(Scanner s, Invoker i){
-        scanner=s;
-        invoker=i;
+    public CommandLineListener(Scanner scanner, Invoker invoker){
+        this.scanner = scanner;
+        this.invoker = invoker;
         commandNamePattern = Pattern.compile("^\\w+");
         argsPattern = Pattern.compile("\\b(\\.*\\s*)*");
     }
@@ -37,6 +32,7 @@ public class CommandLineListener {
      * loop is finished if input is empty or exit command is activated
      */
     public void startRead(){
+        String line;
         String command;
         String args;
         do {
@@ -49,7 +45,7 @@ public class CommandLineListener {
             Matcher matcher = commandNamePattern.matcher(line);
             matcher.find();
             try{
-                command=matcher.group();
+                command = matcher.group();
             }
             catch (IllegalStateException e){
                 System.out.println("Your input is not a command");
@@ -59,17 +55,12 @@ public class CommandLineListener {
             matcher = argsPattern.matcher(line);
             matcher.find();
             try{
-                args=matcher.group();
+                args = matcher.group();
             }
             catch (IllegalStateException e){
-                args="";
+                args = "";
             }
-            try {
-                invoker.execute(command, args);
-            }
-            catch (NullPointerException e){
-                System.out.println("Your input doesn't match any command");
-            }
+            invoker.execute(command, args);
         } while(!invoker.isStopRequested()&&scanner.hasNext());
     }
 }

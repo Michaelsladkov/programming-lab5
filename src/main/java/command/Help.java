@@ -12,7 +12,7 @@ public class Help implements Command{
 
     /**
      * Constructor for this command
-     * @param c - hash map with all commands, taken from invoker. It is used to get access to description() method of each command
+     * @param commands - hash map with all commands, taken from invoker. It is used to get access to description() method of each command
      */
     Help(HashMap<String, Command> commands){this.commands = commands;}
 

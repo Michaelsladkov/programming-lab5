@@ -1,6 +1,7 @@
 package command;
 
 import util.CommandLineListener;
+import util.WorkerFactory;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,14 +15,16 @@ import java.util.Scanner;
 public class ExecuteScript implements Command {
     private final Invoker invoker;
     private static final HashSet<String> scriptFiles=new HashSet<>();
+    private final WorkerFactory workerFactory;
 
     /**
      * Constructor for this command
      * @param invoker - Invoker, translated to this class to init new
      * @see CommandLineListener
      */
-    ExecuteScript(Invoker invoker){
-        this.invoker=invoker;
+    ExecuteScript(Invoker invoker, WorkerFactory factory){
+        this.invoker = invoker;
+        workerFactory = factory;
     }
 
     @Override
@@ -38,8 +41,12 @@ public class ExecuteScript implements Command {
             System.out.println("No such file.");
             return;
         }
-        CommandLineListener listener = new CommandLineListener(new Scanner(scriptReader), invoker);
+        Scanner previousWorkerFactoryScanner = workerFactory.getScanner();
+        Scanner scriptScanner = new Scanner(scriptReader);
+        workerFactory.setScanner(scriptScanner);
+        CommandLineListener listener = new CommandLineListener(scriptScanner, invoker);
         listener.startRead();
+        workerFactory.setScanner(previousWorkerFactoryScanner);
         scriptFiles.clear();
     }
 

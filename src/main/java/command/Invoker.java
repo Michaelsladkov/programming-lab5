@@ -37,15 +37,20 @@ public class Invoker {
         commandHashMap.put("add_if_max", new AddIfMax(manager,factory));
         commandHashMap.put("add_if_min", new AddIfMin(manager, factory));
         commandHashMap.put("remove_lower", new RemoveLower(manager, factory));
-        commandHashMap.put("remove_all_by_status", new RemoveAllByStatus(manager, factory, fieldsReader));
+        commandHashMap.put("remove_all_by_status", new RemoveAllByStatus(manager, fieldsReader));
         commandHashMap.put("min_by_end_date", new MinByEndDate(manager,decoder));
         commandHashMap.put("print_field_descending_salary", new PrintFieldDescendingSalary(manager));
-        commandHashMap.put("execute_script", new ExecuteScript(this));
+        commandHashMap.put("execute_script", new ExecuteScript(this, factory));
         commandHashMap.put("help", new Help(this.commandHashMap));
     }
 
     public void execute(String name, String args) throws NullPointerException{
-        commandHashMap.get(name).execute(args);
+        if(commandHashMap.containsKey(name)) {
+            commandHashMap.get(name).execute(args);
+        }
+        else{
+            System.out.println("Your input doesn't match any command");
+        }
     }
 
     public void requestExit(Object requester){

@@ -3,41 +3,53 @@ package util;
 import data.Person;
 import data.Worker;
 
+/**
+ * This class is responsible for serialisation and describing the Worker class instance
+ */
 public class WorkerDecoder {
-    public void describe( Worker w){
+    /**
+     * Describes the worker in console
+     * @param worker worker class instance to be described
+     */
+    public void describe( Worker worker){
         System.out.println("Worker");
-        System.out.println("id: "+w.getId());
-        System.out.println("Name:"+w.getName());
-        System.out.println("Coordinates: "+"("+w.getCoordinates().getX()+", "+w.getCoordinates().getY()+")");
-        System.out.println("Salary: "+w.getSalary());
-        System.out.println("Start date: "+w.getStartDate().toString());
-        System.out.println("End date: "+w.getEndDate().toString());
-        System.out.println("Status: "+w.getStatus());
+        System.out.println("id: "+worker.getId());
+        System.out.println("Name:"+worker.getName());
+        System.out.println("Coordinates: "+"("+worker.getCoordinates().getX()+", "+worker.getCoordinates().getY()+")");
+        System.out.println("Salary: "+worker.getSalary());
+        System.out.println("Start date: "+worker.getStartDate().toString());
+        System.out.println("End date: "+worker.getEndDate().toString());
+        System.out.println("Status: "+worker.getStatus());
         System.out.println("Personal stats:");
-        Person p = w.getPerson();
-        System.out.println("\tHeight: "+p.getHeight());
-        System.out.println("\tEye color: "+p.getEyeColor());
-        System.out.println("\tHair color: "+p.getHairColor());
-        System.out.println("\tNationality: "+p.getNationality());
-        System.out.println("Creation time: "+w.getCreationDate());
+        Person person = worker.getPerson();
+        System.out.println("\tHeight: "+person.getHeight());
+        System.out.println("\tEye color: "+person.getEyeColor());
+        System.out.println("\tHair color: "+person.getHairColor());
+        System.out.println("\tNationality: "+person.getNationality());
+        System.out.println("Creation time: "+worker.getCreationDate());
     }
 
-    public String getCSVLine(Worker w){
+    /**
+     * Serialise worker instance to csv line
+     * @param worker class instance to be serialised
+     * @return csv line
+     */
+    public String getCSVLine(Worker worker){
         String output="";
-        output+=w.getId()+",";
-        output+=w.getName()+",";
-        output+=w.getCoordinates().getX()+",";
-        output+=w.getCoordinates().getY()+",";
-        output+=w.getSalary()+",";
-        output+=w.getStartDate().toString()+",";
-        output+=w.getEndDate().toString()+",";
-        output+=w.getStatus()+",";
-        Person p = w.getPerson();
-        output+=p.getHeight()+",";
-        output+=p.getEyeColor()+",";
-        output+=p.getHairColor()+",";
-        output+=p.getNationality()+",";
-        output+=w.getCreationDate().getTime();
+        output+=worker.getId()+",";
+        output+=worker.getName()+",";
+        output+=worker.getCoordinates().getX()+",";
+        output+=worker.getCoordinates().getY()+",";
+        output+=worker.getSalary()+",";
+        output+=worker.getStartDate().toString()+",";
+        output+=worker.getEndDate().toString()+",";
+        output+=worker.getStatus()+",";
+        Person person = worker.getPerson();
+        output+=person.getHeight()+",";
+        output+=person.getEyeColor()+",";
+        output+=person.getHairColor()+",";
+        output+=person.getNationality()+",";
+        output+=worker.getCreationDate().getTime();
         return output;
     }
 }

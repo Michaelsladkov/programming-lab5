@@ -4,15 +4,12 @@ import data.Status;
 import data.Worker;
 import util.FieldsReader;
 import util.StorageManager;
-import util.WorkerFactory;
 
 public class RemoveAllByStatus implements Command{
     private final StorageManager manager;
-    private final WorkerFactory factory;
     private final FieldsReader fieldsReader;
-    RemoveAllByStatus(StorageManager storageManager, WorkerFactory workerFactory, FieldsReader fieldsReader){
+    RemoveAllByStatus(StorageManager storageManager, FieldsReader fieldsReader){
         manager = storageManager;
-        factory = workerFactory;
         this.fieldsReader=fieldsReader;
     }
 

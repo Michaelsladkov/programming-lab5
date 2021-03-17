@@ -2,7 +2,6 @@ package util;
 
 import data.Color;
 import data.Country;
-import data.NullFieldException;
 import data.Status;
 
 import java.time.LocalDate;
@@ -12,12 +11,22 @@ import java.time.format.DateTimeParseException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * This class is responsible for input values from file or console
+ */
 public class FieldsReader {
     private Scanner scanner;
+
+    /**
+     * @param scanner scanner to be used as input
+     */
     public FieldsReader(Scanner scanner){
         this.scanner = scanner;
     }
 
+    /**
+     * @param newScanner scanner to be used as input
+     */
     public void setScanner(Scanner newScanner){
         scanner=newScanner;
     }
@@ -34,6 +43,10 @@ public class FieldsReader {
         return name;
     }
 
+    /**
+     * @param axis x or y
+     * @return coordinates instance
+     */
     public Long readCoordinate(char axis){
         Long coordinate = null;
         while (coordinate == null){
@@ -123,8 +136,8 @@ public class FieldsReader {
         Color color = null;
         while(color == null){
             System.out.println("Enter one of following values for "+fieldName+" : ");
-            for (Color decalredColor : Color.values()) {
-                System.out.println(decalredColor.toString());
+            for (Color declaredColor : Color.values()) {
+                System.out.println(declaredColor.toString());
             }
             try {
                 color = Color.valueOf(readLine().toUpperCase());
@@ -188,11 +201,7 @@ public class FieldsReader {
             try {
                 nationality = Country.valueOf(readLine().toUpperCase());
             }
-            catch (IllegalArgumentException e){
-                System.out.println("Your input doesn't contain any of possible countries. Try again");
-                nationality = null;
-            }
-            catch (NullPointerException e){
+            catch (IllegalArgumentException | NullPointerException e){
                 System.out.println("Your input doesn't contain any of possible countries. Try again");
                 nationality = null;
             }
