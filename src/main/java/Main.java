@@ -1,5 +1,4 @@
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import command.Invoker;
 import util.*;
 
@@ -33,12 +32,7 @@ public class Main {
         if(args.length != 0){
             try {
                 FileReader reader=new FileReader(args[0]);
-                try {
-                    fileWorks.setOutputFile(new FileWriter(args[0]));
-                }
-                catch (IOException e){
-                    System.out.println("This file can't be overwritten. workers.csv will be used as output file for save command");
-                }
+                fileWorks.setOutputFile(args[0]);
                 manager.load(fileWorks.readCollection(reader));
                 workerFactory.setStartId(manager.getMaxId());
                 System.out.println("Collection read successfully");

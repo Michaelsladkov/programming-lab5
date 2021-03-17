@@ -12,6 +12,7 @@ public class WorkerDecoder {
      * @param worker worker class instance to be described
      */
     public void describe( Worker worker){
+        System.out.println("---------------------------------------------------");
         System.out.println("Worker");
         System.out.println("id: "+worker.getId());
         System.out.println("Name:"+worker.getName());
