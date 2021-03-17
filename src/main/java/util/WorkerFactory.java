@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 /**
@@ -112,18 +113,23 @@ public class WorkerFactory {
      */
     public Worker readWorkerFromConsole() throws NullFieldException, IncorrectValueException{
         fieldsReader.setScanner(scanner);
-        return createWorker(
-                fieldsReader.readName(),
-                new Coordinates(fieldsReader.readCoordinate('x'),fieldsReader.readCoordinate('y')),
-                fieldsReader.readSalary(),
-                fieldsReader.readStartDate(),
-                fieldsReader.readEndDate(),
-                fieldsReader.readStatus(),
-                fieldsReader.readHeight(),
-                fieldsReader.readColor("eye color"),
-                fieldsReader.readColor("hair color"),
-                fieldsReader.readNationality()
-        );
+        try {
+            return createWorker(
+                    fieldsReader.readName(),
+                    new Coordinates(fieldsReader.readCoordinate('x'), fieldsReader.readCoordinate('y')),
+                    fieldsReader.readSalary(),
+                    fieldsReader.readStartDate(),
+                    fieldsReader.readEndDate(),
+                    fieldsReader.readStatus(),
+                    fieldsReader.readHeight(),
+                    fieldsReader.readColor("eye color"),
+                    fieldsReader.readColor("hair color"),
+                    fieldsReader.readNationality()
+            );
+        }
+        catch (NoSuchElementException e){
+            return null;
+        }
     }
 
     /**

@@ -35,7 +35,7 @@ public class FieldsReader {
      * Reads and checks name value
      * @return allowed name
      */
-    public String readName(){
+    public String readName() throws NoSuchElementException{
         String name = null;
         while (name == null){
             System.out.print("Enter worker's name: ");
@@ -51,7 +51,7 @@ public class FieldsReader {
      * @param axis x or y
      * @return coordinates instance
      */
-    public Long readCoordinate(char axis){
+    public Long readCoordinate(char axis) throws NoSuchElementException{
         Long coordinate = null;
         while (coordinate == null){
             System.out.print("Enter "+axis+" coordinate: ");
@@ -70,7 +70,7 @@ public class FieldsReader {
      * Reads and checks salary value
      * @return checked salary
      */
-    public Long readSalary(){
+    public Long readSalary() throws NoSuchElementException{
         Long salary = null;
         while (salary == null){
             System.out.print("Enter salary: ");
@@ -93,15 +93,10 @@ public class FieldsReader {
      * reads line from input
      * @return null or not empty line
      */
-    public String readLine(){
+    public String readLine() throws NoSuchElementException{
         String line;
-        try {
-            line = scanner.nextLine();
-            if(line.length()==0) line = null;
-        }
-        catch (NoSuchElementException e){
-            line = null;
-        }
+        line = scanner.nextLine();
+        if(line.length()==0) line = null;
         return line;
     }
 
@@ -109,7 +104,7 @@ public class FieldsReader {
      * Reads and checks start date value
      * @return checked start date
      */
-    public ZonedDateTime readStartDate(){
+    public ZonedDateTime readStartDate() throws NoSuchElementException{
         ZonedDateTime startDate = null;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd H:mm:ss z");
         while (startDate==null){
@@ -133,7 +128,7 @@ public class FieldsReader {
      * Reads and checks end date value
      * @return checked end date
      */
-    public LocalDate readEndDate(){
+    public LocalDate readEndDate() throws NoSuchElementException{
         LocalDate endDate = null;
         while (endDate == null){
             System.out.print("Enter end date: ");
@@ -157,7 +152,7 @@ public class FieldsReader {
      * @param fieldName eyeColor or hairColor
      * @return checked color
      */
-    public Color readColor(String fieldName){
+    public Color readColor(String fieldName) throws NoSuchElementException{
         Color color = null;
         while(color == null){
             System.out.println("Enter one of following values for "+fieldName+" : ");
@@ -182,7 +177,7 @@ public class FieldsReader {
      * Reads and checks status value
      * @return checked status
      */
-    public Status readStatus(){
+    public Status readStatus() throws NoSuchElementException{
         Status status = null;
         while (status==null){
             System.out.println("Enter one of following states: ");
@@ -204,7 +199,7 @@ public class FieldsReader {
      * Reads and checks height value
      * @return checked height
      */
-    public Double readHeight(){
+    public Double readHeight() throws NoSuchElementException{
         Double height = null;
         while (height == null)
         {
@@ -228,7 +223,7 @@ public class FieldsReader {
      * Reads and checks nationality value
      * @return checked country
      */
-    public Country readNationality(){
+    public Country readNationality() throws NoSuchElementException{
         Country nationality = null;
         while (nationality == null){
             System.out.println("Enter one of following countries: ");

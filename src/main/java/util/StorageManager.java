@@ -63,6 +63,9 @@ public class StorageManager {
      */
     public boolean add(Worker worker){
         isModified=true;
+        if(worker == null){
+            return false;
+        }
         return storage.add(worker);
     }
 

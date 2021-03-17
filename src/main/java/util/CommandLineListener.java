@@ -35,7 +35,7 @@ public class CommandLineListener {
         String line;
         String command;
         String args;
-        do {
+        while(!invoker.isStopRequested()) {
             try {
                 line = scanner.nextLine();
             }
@@ -60,9 +60,7 @@ public class CommandLineListener {
             catch (IllegalStateException e){
                 args = "";
             }
-            System.out.println(command);
-            System.out.println(args);
             invoker.execute(command, args);
-        } while(!invoker.isStopRequested()&&scanner.hasNext());
+        }
     }
 }

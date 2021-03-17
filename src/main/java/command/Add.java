@@ -25,8 +25,12 @@ public class Add implements Command{
     @Override
     public void execute(String args){
         try {
-            manager.add(factory.readWorkerFromConsole());
-            System.out.println("Worker created");
+            if(manager.add(factory.readWorkerFromConsole())) {
+                System.out.println("Worker created");
+            }
+            else {
+                System.out.println("Input interrupted");
+            }
         }
         catch (IncorrectValueException|NullFieldException e){
             System.out.println(e.getMessage());
