@@ -43,6 +43,24 @@ public class Worker implements Comparable<Worker> {
     public int compareTo (Worker worker) {
         return Long.compare(this.getValue(),worker.getValue());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!this.getClass().equals(obj.getClass())){
+            return false;
+        }
+        Worker wrkr=(Worker)obj;
+        return
+                this.name.equals(wrkr.getName())
+                && this.coordinates.equals(wrkr.getCoordinates())
+                && this.startDate.equals(wrkr.getStartDate())
+                && this.endDate.equals(wrkr.getEndDate())
+                && this.salary==wrkr.getSalary()
+                && this.status.equals(wrkr.getStatus())
+                && this.getEndDate().equals(wrkr.getEndDate())
+                && this.person.equals(wrkr.getPerson());
+    }
+
     public int getId(){
         return id;
     }

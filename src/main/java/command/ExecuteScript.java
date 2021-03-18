@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class ExecuteScript implements Command {
     private final Invoker invoker;
-    private static final HashSet<String> scriptFiles=new HashSet<>();
+    private final HashSet<String> scriptFiles=new HashSet<>();
     private final WorkerFactory workerFactory;
 
     /**
