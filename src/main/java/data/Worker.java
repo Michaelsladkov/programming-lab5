@@ -41,6 +41,9 @@ public class Worker implements Comparable<Worker> {
 
     @Override
     public int compareTo (Worker worker) {
+        if(this.equals(worker)){
+            return 0;
+        }
         return Long.compare(this.getValue(),worker.getValue());
     }
 
