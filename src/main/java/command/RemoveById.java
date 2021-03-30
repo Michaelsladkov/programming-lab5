@@ -2,7 +2,7 @@ package command;
 
 import util.StorageManager;
 
-public class RemoveById implements Command{
+public class RemoveById extends CommandNeedsId{
     private final StorageManager manager;
     RemoveById(StorageManager storageManager){
         manager=storageManager;
@@ -10,15 +10,8 @@ public class RemoveById implements Command{
 
     @Override
     public void execute(String args) {
-        if(args.length()==0){
-            System.out.println("id is required");
-            return;
-        }
-        int id;
-        try{
-            id=Integer.parseInt(args);
-        } catch (NumberFormatException e){
-            System.out.println("Your input is not an id");
+        Integer id = getId(args);
+        if(id == null){
             return;
         }
         try {

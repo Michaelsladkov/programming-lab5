@@ -5,7 +5,7 @@ import data.NullFieldException;
 import util.StorageManager;
 import util.WorkerFactory;
 
-public class Update implements Command{
+public class Update extends CommandNeedsId{
     private final StorageManager manager;
     private final WorkerFactory factory;
     Update(StorageManager storageManager, WorkerFactory workerFactory){
@@ -15,15 +15,8 @@ public class Update implements Command{
 
     @Override
     public void execute(String args) {
-        if(args.length()==0){
-            System.out.println("id is required");
-            return;
-        }
-        int id;
-        try{
-            id=Integer.parseInt(args);
-        } catch (NumberFormatException e){
-            System.out.println("Your input is not an id");
+        Integer id = getId(args);
+        if(id == null){
             return;
         }
         try {
