@@ -162,9 +162,18 @@ public class WorkerFactory {
         Color hairColor;
         Country nationality;
         Date creationDate;
-        Pattern namePattern=Pattern.compile("\"\\S.*\"");
-        String[] fields = line.split(",");
-        if (fields.length != 13) {
+        Pattern namePattern = Pattern.compile("\"\\S.*\"");
+        Matcher fieldMatcher = Pattern.compile("(\"[^\"]+\")|([^,\"]+)").matcher(line);
+        String[] fields = new String[13];
+        int fieldsCounter=0;
+        while (fieldMatcher.find()){
+            if(fieldsCounter==13){
+                throw new IncorrectFileException(num);
+            }
+            fields[fieldsCounter]=fieldMatcher.group();
+            fieldsCounter++;
+        }
+        if(fieldsCounter<13){
             throw new IncorrectFileException(num);
         }
         try {

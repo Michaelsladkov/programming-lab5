@@ -43,11 +43,9 @@ public class CommandLineListener {
                 break;
             }
             Matcher matcher = commandNamePattern.matcher(line);
-            matcher.find();
-            try{
+            if(matcher.find()) {
                 command = matcher.group();
-            }
-            catch (IllegalStateException e){
+            } else{
                 System.out.println("Your input is not a command");
                 continue;
             }
