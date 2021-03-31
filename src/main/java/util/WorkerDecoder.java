@@ -19,7 +19,12 @@ public class WorkerDecoder {
         System.out.println("Coordinates: "+"("+worker.getCoordinates().getX()+", "+worker.getCoordinates().getY()+")");
         System.out.println("Salary: "+worker.getSalary());
         System.out.println("Start date: "+worker.getStartDate().toString());
-        System.out.println("End date: "+worker.getEndDate().toString());
+        if(worker.getEndDate()!=null){
+            System.out.println("End date: "+worker.getEndDate().toString());
+        }
+        else{
+            System.out.println("End date: null");
+        }
         System.out.println("Status: "+worker.getStatus());
         System.out.println("Personal stats:");
         Person person = worker.getPerson();
@@ -43,7 +48,12 @@ public class WorkerDecoder {
         output += worker.getCoordinates().getY()+",";
         output += worker.getSalary()+",";
         output += worker.getStartDate().toString()+",";
-        output += worker.getEndDate().toString()+",";
+        if(worker.getEndDate()!=null){
+            output += worker.getEndDate().toString()+",";
+        }
+        else {
+            output += "null,";
+        }
         output += worker.getStatus()+",";
         Person person = worker.getPerson();
         output += person.getHeight()+",";

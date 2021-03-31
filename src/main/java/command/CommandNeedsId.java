@@ -13,6 +13,6 @@ public abstract class CommandNeedsId implements Command {
             System.out.println("Your input is not an id");
             return null;
         }
-        return Integer.valueOf(id);
+        return id;
     }
 }

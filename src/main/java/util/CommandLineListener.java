@@ -51,11 +51,10 @@ public class CommandLineListener {
             }
             line=line.substring(command.length());
             matcher = argsPattern.matcher(line);
-            matcher.find();
-            try{
+            if(matcher.find()){
                 args = matcher.group();
             }
-            catch (IllegalStateException e){
+            else{
                 args = "";
             }
             invoker.execute(command, args);

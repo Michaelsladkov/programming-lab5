@@ -208,7 +208,12 @@ public class WorkerFactory {
         try{
             endDate= LocalDate.parse(fields[6]);
         }catch (DateTimeParseException e) {
-            throw new IncorrectValueException("StartDate", "unable to parse");
+            if(fields[6].equals("null")){
+                endDate=null;
+            }
+            else {
+                throw new IncorrectValueException("StartDate", "unable to parse");
+            }
         }
         try {
             status=Status.valueOf(fields[7]);

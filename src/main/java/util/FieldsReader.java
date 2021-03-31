@@ -210,6 +210,9 @@ public class FieldsReader {
                 System.out.println("your input doesn't contain height, try again");
                 height = null;
             }
+            catch (NumberFormatException e){
+                System.out.println("You have used an incorrect number format");
+            }
             if(height!=null) if(height<=0){
                 System.out.println("Height should be more than 0");
                 height = null;
