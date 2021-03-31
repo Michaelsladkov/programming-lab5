@@ -3,6 +3,7 @@ package command;
 import data.IncorrectValueException;
 import data.NullFieldException;
 import data.Worker;
+import util.InputInterruptedException;
 import util.StorageManager;
 import util.WorkerFactory;
 
@@ -25,7 +26,7 @@ public class RemoveLower implements Command{
             }
             System.out.println("All lower elements have been removed");
         }
-        catch (IncorrectValueException| NullFieldException e){
+        catch (IncorrectValueException| NullFieldException| InputInterruptedException e){
             System.out.println(e.getMessage());
         }
     }

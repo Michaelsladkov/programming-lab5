@@ -2,6 +2,7 @@ package command;
 
 import data.IncorrectValueException;
 import data.NullFieldException;
+import util.InputInterruptedException;
 import util.StorageManager;
 import util.WorkerFactory;
 
@@ -29,10 +30,10 @@ public class Add implements Command{
                 System.out.println("Worker created");
             }
             else {
-                System.out.println("Input interrupted");
+                System.out.println("This element probably duplicates existing one and can't be added");
             }
         }
-        catch (IncorrectValueException|NullFieldException e){
+        catch (IncorrectValueException|NullFieldException|InputInterruptedException e){
             System.out.println(e.getMessage());
         }
     }

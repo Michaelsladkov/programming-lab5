@@ -8,6 +8,8 @@ import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * This class is responsible for creation of new instances of Worker class
@@ -86,9 +88,6 @@ public class WorkerFactory {
         if(startDate==null){
             throw new NullFieldException("Start date");
         }
-        if(endDate==null){
-            throw new NullFieldException("End date");
-        }
         if (status==null){
             throw new NullFieldException("Status");
         }
@@ -111,7 +110,7 @@ public class WorkerFactory {
      * @throws NullFieldException if field which shouldn't be null is null
      * @throws IncorrectValueException if value is unable to be applied for field
      */
-    public Worker readWorkerFromConsole() throws NullFieldException, IncorrectValueException{
+    public Worker readWorkerFromConsole() throws NullFieldException, IncorrectValueException, InputInterruptedException{
         fieldsReader.setScanner(scanner);
         try {
             return createWorker(
@@ -128,7 +127,7 @@ public class WorkerFactory {
             );
         }
         catch (NoSuchElementException e){
-            return null;
+            throw new InputInterruptedException();
         }
     }
 
@@ -163,6 +162,7 @@ public class WorkerFactory {
         Color hairColor;
         Country nationality;
         Date creationDate;
+        Pattern namePattern=Pattern.compile("\"\\S.*\"");
         String[] fields = line.split(",");
         if (fields.length != 13) {
             throw new IncorrectFileException(num);
@@ -173,7 +173,14 @@ public class WorkerFactory {
             throw new IncorrectValueException("id", "unable to parse");
         }
         name = fields[1];
-        if (name.equals("null")||name.equals("")) name = null;
+        Matcher nameMatcher = namePattern.matcher(name);
+        if(nameMatcher.find()){
+            name=nameMatcher.group();
+            name=name.substring(1,name.length()-1);
+        }
+        else {
+            name=null;
+        }
         try {
             coordinates=new Coordinates(Long.parseLong(fields[2]), Long.parseLong(fields[3]));
         }catch (NumberFormatException e) {

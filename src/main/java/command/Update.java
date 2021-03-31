@@ -2,6 +2,7 @@ package command;
 
 import data.IncorrectValueException;
 import data.NullFieldException;
+import util.InputInterruptedException;
 import util.StorageManager;
 import util.WorkerFactory;
 
@@ -30,7 +31,7 @@ public class Update extends CommandNeedsId{
             manager.add(factory.readWorkerFromConsole());
             System.out.println("Worker updated");
         }
-        catch (IncorrectValueException|NullFieldException e){
+        catch (IncorrectValueException|NullFieldException| InputInterruptedException e){
             System.out.println(e.getMessage());
             return;
         }

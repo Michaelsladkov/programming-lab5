@@ -44,7 +44,7 @@ public class Invoker {
         commandHashMap.put("help", new Help(this.commandHashMap));
     }
 
-    public void execute(String name, String args) throws NullPointerException{
+    public void execute(String name, String args){
         if(commandHashMap.containsKey(name)) {
             commandHashMap.get(name).execute(args);
         }

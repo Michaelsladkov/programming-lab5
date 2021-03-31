@@ -38,7 +38,7 @@ public class WorkerDecoder {
     public String getCSVLine(Worker worker){
         String output="";
         output += worker.getId()+",";
-        output += worker.getName()+",";
+        output += '"'+worker.getName()+'"'+",";
         output += worker.getCoordinates().getX()+",";
         output += worker.getCoordinates().getY()+",";
         output += worker.getSalary()+",";

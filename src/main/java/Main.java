@@ -40,7 +40,6 @@ public class Main {
                 System.out.println("No such file.");
             }
         }
-        System.out.println(manager.add(manager.getById(17)));
         listener.startRead();
     }
 }

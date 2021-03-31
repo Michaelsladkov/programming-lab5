@@ -77,7 +77,7 @@ public class FileWorks {
             System.err.println(e.getMessage());
         }
         if(input.size()>0){
-            System.out.println("collection read successfully");
+            System.out.println("collection read");
         }
         else {
             System.out.println("Your file is empty");

@@ -3,6 +3,7 @@ package command;
 import data.IncorrectValueException;
 import data.NullFieldException;
 import data.Worker;
+import util.InputInterruptedException;
 import util.StorageManager;
 import util.WorkerFactory;
 
@@ -33,7 +34,7 @@ public class AddIfMin implements Command{
                 System.out.println("Your worker isn't less than max from collection");
             }
         }
-        catch (IncorrectValueException|NullFieldException e){
+        catch (InputInterruptedException |NullFieldException|IncorrectValueException e){
             System.out.println(e.getMessage());
         }
     }

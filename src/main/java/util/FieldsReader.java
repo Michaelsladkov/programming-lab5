@@ -136,8 +136,7 @@ public class FieldsReader {
                 endDate = LocalDate.parse(readLine());
             }
             catch (NullPointerException e){
-                System.out.println("your input doesn't contain date, try again");
-                endDate = null;
+                break;
             }
             catch (DateTimeParseException e)
             {
