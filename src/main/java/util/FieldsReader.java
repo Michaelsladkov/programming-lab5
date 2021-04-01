@@ -42,6 +42,11 @@ public class FieldsReader {
             name = readLine();
             if(name == null){
                 System.out.println("your input doesn't contain name, try again");
+                continue;
+            }
+            if(name.contains("\"")){
+                System.out.println("\" are restricted in name");
+                name=null;
             }
         }
         return name;
