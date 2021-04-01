@@ -53,15 +53,15 @@ public class Worker implements Comparable<Worker> {
             return false;
         }
         Worker wrkr=(Worker)obj;
-        return
-                this.name.equals(wrkr.getName())
-                && this.coordinates.equals(wrkr.getCoordinates())
-                && this.startDate.equals(wrkr.getStartDate())
-                && this.endDate.equals(wrkr.getEndDate())
-                && this.salary==wrkr.getSalary()
-                && this.status.equals(wrkr.getStatus())
-                && this.getEndDate().equals(wrkr.getEndDate())
-                && this.person.equals(wrkr.getPerson());
+        boolean ret;
+        ret = this.name.equals(wrkr.getName());
+        ret &= this.coordinates.equals(wrkr.getCoordinates());
+        ret &= this.startDate.equals(wrkr.getStartDate());
+        ret &= this.endDate==null ? wrkr.getEndDate()==null : this.endDate.equals(wrkr.getEndDate());
+        ret &= this.salary==wrkr.getSalary();
+        ret &= this.status.equals(wrkr.getStatus());
+        ret &= this.person.equals(wrkr.getPerson());
+        return ret;
     }
 
     public int getId(){
