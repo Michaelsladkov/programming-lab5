@@ -52,7 +52,8 @@ public class Worker implements Comparable<Worker> {
         if(!this.getClass().equals(obj.getClass())){
             return false;
         }
-        Worker wrkr=(Worker)obj;
+        Worker wrkr = (Worker)obj;
+        if(this.getId() == wrkr.getId()) return true;
         boolean ret;
         ret = this.name.equals(wrkr.getName());
         ret &= this.coordinates.equals(wrkr.getCoordinates());

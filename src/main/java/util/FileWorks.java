@@ -60,7 +60,9 @@ public class FileWorks {
         TreeSet<Worker> input = new TreeSet<>();
         while (scanner.hasNext()){
             try {
-                input.add(factory.getFromCSV(scanner.nextLine(), ++lineNumber));
+                if(!input.add(factory.getFromCSV(scanner.nextLine(), ++lineNumber))){
+                    System.out.println("Duplicate object found in line " + lineNumber);
+                }
             }
             catch (IncorrectFileException e){
                 System.out.println(e.getMessage());
