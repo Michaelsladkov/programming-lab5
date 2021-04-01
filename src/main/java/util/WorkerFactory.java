@@ -163,7 +163,7 @@ public class WorkerFactory {
         Country nationality;
         Date creationDate;
         Pattern namePattern = Pattern.compile("\"\\S.*\"");
-        Matcher fieldMatcher = Pattern.compile("(\"[^\"]+\")|([^,\"]+)").matcher(line);
+        Matcher fieldMatcher = Pattern.compile("(,\".+\",)|([^,\"]+)").matcher(line);
         String[] fields = new String[13];
         int fieldsCounter=0;
         while (fieldMatcher.find()){
